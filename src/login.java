@@ -14,6 +14,7 @@ public class login extends JDialog{
     private JButton administradorButton;
     private JButton cajeroButton;
     private JButton bodegueroButton;
+    private JFormattedTextField formattedTextField1;
 
     public User user;
     public login(JFrame parent){
