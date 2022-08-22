@@ -11,13 +11,17 @@ public class login extends JDialog{
     private JButton CANCELButton;
     private JButton OKButton;
     private JPanel loginPanel;
+    private JButton administradorButton;
+    private JButton cajeroButton;
+    private JButton bodegueroButton;
+    private JFormattedTextField formattedTextField1;
 
     public User user;
     public login(JFrame parent){
         super(parent);
         setTitle("Login");
         setContentPane(loginPanel);
-        setMinimumSize(new Dimension(640,480));
+        setMinimumSize(new Dimension(1000,700));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
