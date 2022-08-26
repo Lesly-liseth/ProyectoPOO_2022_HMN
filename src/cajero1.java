@@ -8,4 +8,5 @@ public class cajero1 {
     private JTextField textField4;
     private JTextField textField5;
     private JTextField textField6;
+    private JTable table1;
 }
