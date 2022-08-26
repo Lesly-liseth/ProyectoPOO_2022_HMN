@@ -87,7 +87,7 @@
         <properties>
           <font size="16" style="1"/>
           <foreground color="-16777216"/>
-          <text value="CANTIDAD"/>
+          <text value="STOCK"/>
         </properties>
       </component>
       <component id="a2dea" class="javax.swing.JLabel">
