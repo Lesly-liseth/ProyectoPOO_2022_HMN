@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class cajero1 extends JFrame {
@@ -13,7 +15,6 @@ public class cajero1 extends JFrame {
     private JTable tabla;
     private JTextField producto;
     private JButton bucar;
-    private JButton agregar;
     private JButton FINALIZARButton;
     private JButton eliminar;
     private JButton TOTALButton;
@@ -33,12 +34,17 @@ public class cajero1 extends JFrame {
         setVisible(true);
 
 
-        String[] titulo = new String[]{"ID", "PRODUCTO", "DESCRIPCION", "CANTIDAD", "PRECIO", "SUBTOTAL"};
+        String[] titulo = new String[]{"ID", "PRODUCTO", "DESCRIPCION", "PRECIO", "CANTIDAD", "SUBTOTAL"};
         model.setColumnIdentifiers(titulo);
         tabla.setModel(model);
 
 
-
+        bucar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregar();
+            }
+        });
     }
 
     Connection con;
@@ -66,32 +72,34 @@ public class cajero1 extends JFrame {
 
     //funcion agregar a la tabla
     public void agregar(){
-        /*String id,nombre,descripcion, precio, stock;
-        id = textid.getText();
-        nombre = textnombre.getText();
-        descripcion = textdescripcion.getText();
-        precio = textprecio.getText();
-        stock = textStock.getText();
 
         final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME="pame";
         final String PASSWORD="1234";
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+        String produ = producto.getText();
+        String dato = ""; //en caso que el espacio este vacio
+
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "insert into registro_prod(nombre,descripcion,precio,stock) values (?,?,?,?)";
+            ResultSet rs = null;
+            String sql = "SELECT nombre,descripcion,precio,stock FROM registro_prod  ";
             pst = conn.prepareStatement(sql);
-            pst.setString(1,nombre);
-            pst.setString(2,descripcion);
-            pst.setString(3,precio);
-            pst.setString(4,stock);
-            pst.executeUpdate();
+            rs = pst.executeQuery();
 
-            JOptionPane.showMessageDialog(null,"Registro Exitoso");
+            ResultSetMetaData datos = rs.getMetaData();
+            int colum = datos.getColumnCount();
 
-            stmt.close();
-            conn.close();
+            while (rs.next()) {
+                Object[] filas = new Object[colum];
+                for (int i = 0; i < colum; i++) {
+                    filas[i] = rs.getObject(i + 1);
+                }
+                model.addRow(filas);
+
+            }
         }
         catch (SQLException ex){
 
@@ -100,10 +108,10 @@ public class cajero1 extends JFrame {
 
         }
 
-    }*/
+    }
 
 
-}
+
 
     public static void main(String[] args) {
         cajero1 cajeros = new cajero1();
