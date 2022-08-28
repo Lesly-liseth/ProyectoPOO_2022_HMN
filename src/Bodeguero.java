@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,17 @@ public class Bodeguero extends JFrame{
     private JTextField textField3;
     private JTextField textField4;
 
+    DefaultTableModel model = new DefaultTableModel();
+
+    public Bodeguero() {
+        conectar();
+
+        setTitle("MODIFICACION DE PRODUCTOS");
+        setSize(720, 500);
+        setContentPane(panel);
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
 
     public Bodeguero() {
         ingresarButton.addActionListener(new ActionListener() {
