@@ -15,11 +15,13 @@ public class cajero1 extends JFrame {
     private JTable tabla;
     private JTextField producto;
     private JButton bucar;
-    private JButton FINALIZARButton;
+    private JButton finalizar;
     private JButton eliminar;
-    private JButton TOTALButton;
+    private JButton total;
     private JTextField cantidad;
     private JButton agregar;
+    private JTextField resultado;
+    private JButton LIMPIARButton;
 
     DefaultTableModel model = new DefaultTableModel();
 
@@ -55,6 +57,20 @@ public class cajero1 extends JFrame {
                 producto.setText("");
                 cantidad.setText("");
 
+            }
+        });
+
+
+        finalizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stock();
+            }
+        });
+        total.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                total();
             }
         });
     }
@@ -177,13 +193,65 @@ public class cajero1 extends JFrame {
 
         }
 
-    }
-    public void eliminar_registo() {
-        int registro = tabla.getSelectedRow();
 
-        model.removeRow(registro);
     }
 
+    public void stock(){
+
+        final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
+
+        String produ = producto.getText(); //variable que contendra el nombre del producto a agregar
+        String buscar = ""; //inicializando variable
+
+
+        if(!"".equals(produ)) //evaluación del campo producto mientras sea diferente de vacio
+        {
+            buscar = "WHERE nombre = '" + produ + "'";
+        }
+
+        try {
+
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE registro_prod SET stock = (stock - cantidad)"+buscar ;
+            pst = conn.prepareStatement(sql);
+
+            pst.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            JOptionPane.showMessageDialog(null,"GRACIAS POR SU COMPRA");
+
+        }
+        catch (SQLException ex){
+
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Stock");
+
+        }
+
+    }
+
+    public void total(){
+
+        double acum = 0;
+        double tot = 0;
+        int filas = tabla.getRowCount();
+
+        for (int i = 0; i < filas; i++) {
+            acum = Double.parseDouble(tabla.getValueAt(i, 5).toString());
+            tot+=acum;
+        }
+        resultado.setText(""+tot);
+
+    }
+
+    public void eliminar_registo(){
+        int fila = tabla.getSelectedRow();
+        model.removeRow(fila);
+    }
 
 
     public static void main(String[] args) {
