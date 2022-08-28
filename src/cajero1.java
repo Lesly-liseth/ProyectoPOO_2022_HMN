@@ -39,14 +39,6 @@ public class cajero1 extends JFrame {
         tabla.setModel(model);
 
 
-        agregar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                agregar();
-                producto.setText("");
-                cantidad.setText("");
-            }
-        });
 
         eliminar.addActionListener(new ActionListener() {
             @Override
