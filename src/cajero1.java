@@ -19,7 +19,7 @@ public class cajero1 extends JFrame {
     private JButton eliminar;
     private JButton TOTALButton;
     private JTextField cantidad;
-    private JButton agregarButton;
+    private JButton agregar;
 
     DefaultTableModel model = new DefaultTableModel();
 
@@ -39,10 +39,19 @@ public class cajero1 extends JFrame {
         tabla.setModel(model);
 
 
-        bucar.addActionListener(new ActionListener() {
+        agregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 agregar();
+                producto.setText("");
+                cantidad.setText("");
+            }
+        });
+
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eliminar_registo();
             }
         });
     }
@@ -77,39 +86,56 @@ public class cajero1 extends JFrame {
         final String USERNAME="pame";
         final String PASSWORD="1234";
 
-        String produ = producto.getText();
-        String dato = ""; //en caso que el espacio este vacio
+        String produ = producto.getText(); //variable que contendra el nombre del producto a agregar
+        String buscar = ""; //inicializando variable
 
+        if(!"".equals(produ)) //evaluación del campo producto mientras sea diferente de vacio
+        {
+            buscar = "WHERE nombre = '" + produ + "'";
+
+        }
 
         try {
+           int cant = Integer.parseInt(cantidad.getText());
+
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
             ResultSet rs = null;
-            String sql = "SELECT nombre,descripcion,precio,stock FROM registro_prod  ";
+
+            String sql = "SELECT id,nombre,descripcion,precio,cantidad, precio*cantidad  FROM registro_prod  "+buscar;
             pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery(sql);
+
 
             ResultSetMetaData datos = rs.getMetaData();
             int colum = datos.getColumnCount();
 
             while (rs.next()) {
+
                 Object[] filas = new Object[colum];
                 for (int i = 0; i < colum; i++) {
-                    filas[i] = rs.getObject(i + 1);
+                    filas[i] = rs.getObject(i+1);
+
                 }
                 model.addRow(filas);
 
             }
+
+
         }
         catch (SQLException ex){
 
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"No se pudo registrar");
+            JOptionPane.showMessageDialog(null,"Producto no encontrado");
 
         }
 
     }
+    public void eliminar_registo() {
+        int registro = tabla.getSelectedRow();
 
+        model.removeRow(registro);
+    }
 
 
 
