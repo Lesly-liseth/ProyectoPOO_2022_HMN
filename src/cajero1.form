@@ -116,7 +116,10 @@
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9116985"/>
+          <font name="Futura Md BT" size="18" style="1"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="632ae" class="javax.swing.JTable" binding="tabla">
@@ -221,6 +224,14 @@
         </constraints>
         <properties>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="1e6ab" class="javax.swing.JButton" binding="agregar">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Agregar"/>
         </properties>
       </component>
     </children>

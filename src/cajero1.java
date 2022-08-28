@@ -46,6 +46,17 @@ public class cajero1 extends JFrame {
                 eliminar_registo();
             }
         });
+
+        agregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizar();
+                agregar();
+                producto.setText("");
+                cantidad.setText("");
+
+            }
+        });
     }
 
     Connection con;
@@ -88,7 +99,7 @@ public class cajero1 extends JFrame {
         }
 
         try {
-           int cant = Integer.parseInt(cantidad.getText());
+
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -113,12 +124,56 @@ public class cajero1 extends JFrame {
 
             }
 
+            stmt.close();
+            conn.close();
+
 
         }
         catch (SQLException ex){
 
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null,"Producto no encontrado");
+
+        }
+
+    }
+
+    public void actualizar(){
+
+        final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
+
+        String produ = producto.getText(); //variable que contendra el nombre del producto a agregar
+        String buscar = ""; //inicializando variable
+
+        String cant = cantidad.getText();
+
+        if(!"".equals(produ)) //evaluación del campo producto mientras sea diferente de vacio
+        {
+            buscar = "WHERE nombre = '" + produ + "'";
+        }
+
+        try {
+
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE registro_prod SET cantidad =?"+buscar ;
+            pst = conn.prepareStatement(sql);
+
+            pst.setString(1,cant);
+
+            pst.executeUpdate();
+            stmt.close();
+            conn.close();
+
+
+        }
+        catch (SQLException ex){
+
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Ingrese la cantidad del producto");
 
         }
 
