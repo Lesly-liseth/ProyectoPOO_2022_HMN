@@ -21,6 +21,7 @@ public class Bodeguero extends JFrame {
     String producto, id, stock, precio;
 
     public Bodeguero() {
+        conectar();
 
         setTitle("MODIFICACION DE PRODUCTOS");
         setSize(720, 500);
@@ -69,5 +70,32 @@ public class Bodeguero extends JFrame {
 
             }
         });
+    }
+
+    Connection con;
+    PreparedStatement pst;
+    public void conectar(){
+
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME="root";
+        final String PASSWORD="";
+
+        try{
+
+            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+            Statement stmt = conn.createStatement();
+            System.out.println("conexion exitosa");
+
+
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL incorrecto");
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Bodeguero bodegueros = new Bodeguero();
     }
 }
