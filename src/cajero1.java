@@ -148,7 +148,7 @@ public class cajero1 extends JFrame {
         catch (SQLException ex){
 
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Producto no encontrado");
+            JOptionPane.showMessageDialog(null,"Error de conección");
 
         }
 
