@@ -7,13 +7,15 @@ import java.sql.*;
 public class Bodeguero extends JFrame{
     private JButton ingresarButton;
     private JButton verButton;
-    private JButton modificarButton;
+    private JButton actualizarButton;
     private JButton eliminarButton;
-    private JTextField productoTF;
-    private JTextField idTF;
-    private JTextField stockTF;
-    private JTextField precioTF;
+    private JTextField textNombre;
+    private JTextField textDescripcion;
+    private JTextField textPrecio;
+    private JTextField textStock;
     private JPanel mainPanel;
+    private JButton limpiarButton;
+    private JButton buscarButton;
 
     DefaultTableModel model = new DefaultTableModel();
     String producto,id,stock, precio;
@@ -37,7 +39,7 @@ public class Bodeguero extends JFrame{
 
             }
         });
-        modificarButton.addActionListener(new ActionListener() {
+        actualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -53,10 +55,10 @@ public class Bodeguero extends JFrame{
     PreparedStatement pst;
     public void ingresar() {
 
-        producto = productoTF.getText();
-        id = idTF.getText();
-        stock = stockTF.getText();
-        precio = precioTF.getText();
+        producto = textNombre.getText();
+        id = textDescripcion.getText();
+        stock = textPrecio.getText();
+        precio = textStock.getText();
 
         final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
         final String USERNAME="root";
@@ -90,7 +92,7 @@ public class Bodeguero extends JFrame{
         final String USERNAME="root";
         final String PASSWORD="";
 
-        String borrarid = idTF.getText();
+        String borrarid = textDescripcion.getText();
         try{
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt = conn.createStatement();
