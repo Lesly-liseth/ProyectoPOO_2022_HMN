@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class Bodeguero extends JFrame{
+public class Bodeguero extends JFrame {
     private JButton ingresarButton;
     private JButton verButton;
     private JButton actualizarButton;
@@ -18,10 +18,10 @@ public class Bodeguero extends JFrame{
     private JButton buscarButton;
 
     DefaultTableModel model = new DefaultTableModel();
-    String producto,id,stock, precio;
+    String producto, id, stock, precio;
 
     public Bodeguero() {
-        //conectar();
+
         setTitle("MODIFICACION DE PRODUCTOS");
         setSize(720, 500);
         setContentPane(mainPanel);
@@ -29,10 +29,6 @@ public class Bodeguero extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        ingresarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {ingresar();}
-        });
         verButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,72 +41,33 @@ public class Bodeguero extends JFrame{
 
             }
         });
+
+
         eliminarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {eliminar();}
+            public void actionPerformed(ActionEvent e) {
+
+            }
         });
-    }
 
-    Connection con;
-    PreparedStatement pst;
-    public void ingresar() {
+        limpiarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        producto = textNombre.getText();
-        id = textDescripcion.getText();
-        stock = textPrecio.getText();
-        precio = textStock.getText();
+            }
+        });
 
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            Statement stmt = conn.createStatement();
-            String sql = "insert into registro_prod(nombre,descripcion,precio,stock) values (?,?,?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, producto);
-            pst.setString(2, id);
-            pst.setString(3, precio);
-            pst.setString(4, stock);
-            pst.executeUpdate();
+            }
+        });
+        ingresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            JOptionPane.showMessageDialog(null, "Registro Exitoso");
-
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "No se pudo registrar");
-        }
-    }
-
-    public void eliminar(){
-
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
-
-        String borrarid = textDescripcion.getText();
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt = conn.createStatement();
-            String sql = "delete from registro_prod where id=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-
-            pst.setString(1,borrarid);
-
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro Borrado");
-            stmt.close();
-            conn.close();
-        }
-        catch (SQLException ex){
-
-            ex.printStackTrace();
-            System.out.println("SQL incorrecto");
-
-        }
+            }
+        });
     }
 }
