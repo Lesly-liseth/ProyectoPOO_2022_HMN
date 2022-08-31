@@ -148,7 +148,7 @@ public class cajero1 extends JFrame {
         catch (SQLException ex){
 
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Producto no encontrado");
+            JOptionPane.showMessageDialog(null,"Error de conección");
 
         }
 
@@ -240,15 +240,15 @@ public class cajero1 extends JFrame {
         double tot = 0;
         int filas = tabla.getRowCount();
 
-        for (int i = 0; i < filas; i++) {
-            acum = Double.parseDouble(tabla.getValueAt(i, 5).toString());
+     for (int i = 0; i < filas; i++) {
+           acum = Double.parseDouble(tabla.getValueAt(i, 5).toString());
             tot+=acum;
         }
         resultado.setText(""+tot);
 
     }
 
-    public void eliminar_registo(){
+      public void eliminar_registo(){
         int fila = tabla.getSelectedRow();
         model.removeRow(fila);
     }

@@ -4,22 +4,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class Bodeguero extends JFrame{
+public class Bodeguero extends JFrame {
     private JButton ingresarButton;
     private JButton verButton;
-    private JButton modificarButton;
+    private JButton actualizarButton;
     private JButton eliminarButton;
-    private JTextField productoTF;
-    private JTextField idTF;
-    private JTextField stockTF;
-    private JTextField precioTF;
+    private JTextField textNombre;
+    private JTextField textDescripcion;
+    private JTextField textPrecio;
+    private JTextField textStock;
     private JPanel mainPanel;
+    private JButton limpiarButton;
+    private JButton buscarButton;
+    private JTextField textid;
 
     DefaultTableModel model = new DefaultTableModel();
-    String producto,id,stock, precio;
+    String producto, id, stock, precio;
 
     public Bodeguero() {
-        //conectar();
+        conectar();
+
         setTitle("MODIFICACION DE PRODUCTOS");
         setSize(720, 500);
         setContentPane(mainPanel);
@@ -27,88 +31,235 @@ public class Bodeguero extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        ingresarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {ingresar();}
-        });
         verButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        modificarButton.addActionListener(new ActionListener() {
+        actualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
+
+
         eliminarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {eliminar();}
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        limpiarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        ingresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                ingresar();
+
+            }
         });
     }
 
     Connection con;
     PreparedStatement pst;
-    public void ingresar() {
+    public void conectar(){
 
-        producto = productoTF.getText();
-        id = idTF.getText();
-        stock = stockTF.getText();
-        precio = precioTF.getText();
-
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
         final String USERNAME="root";
         final String PASSWORD="";
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            Statement stmt = conn.createStatement();
-            String sql = "insert into registro_prod(nombre,descripcion,precio,stock) values (?,?,?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, producto);
-            pst.setString(2, id);
-            pst.setString(3, precio);
-            pst.setString(4, stock);
-            pst.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Registro Exitoso");
-
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "No se pudo registrar");
-        }
-    }
-
-    public void eliminar(){
-
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
-
-        String borrarid = idTF.getText();
         try{
+
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "delete from registro_prod where id=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
+            System.out.println("conexion exitosa");
 
-            pst.setString(1,borrarid);
 
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL incorrecto");
+        }
+
+    }
+
+    public void ingresar(){
+        String nombre, descripcion,precio, id, stock;
+        nombre=textNombre.getText();
+        descripcion=textDescripcion.getText();
+        precio=textPrecio.getText();
+        stock=textStock.getText();
+        id= textNombre.getText();
+        System.out.println(id);
+        System.out.println(nombre);
+        System.out.println(descripcion);
+        System.out.println(precio);
+        System.out.println(stock);
+
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME="root";
+        final String PASSWORD="";
+
+
+        try{
+            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+            Statement stmt= conn.createStatement();
+            String sql="insert into productos(nombre, descripcion, precio, stock)values(?,?,?,?)";
+            PreparedStatement pst=conn.prepareStatement(sql);
+            pst.setString(1,nombre);
+            pst.setString(2,descripcion);
+            pst.setString(3,precio);
+            pst.setString(4,stock);
+            //ResultSet resultSet=pst.executeQuery();
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro Borrado");
+
             stmt.close();
             conn.close();
-        }
-        catch (SQLException ex){
 
+        } catch(SQLException ex){
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
         }
+    }
+
+    public void limpiar(){
+        textid.setText("");
+        textNombre.setText("");
+        textDescripcion.setText("");
+        textPrecio.setText("");
+        textStock.setText("");
+    }
+
+    public void buscar(){
+        String id="0";
+        id=textid.getText();
+
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME="root";
+        final String PASSWORD="";
+
+
+        try{
+            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+            Statement stmt= conn.createStatement();
+            String sql="select * from registro_prod where id=?";
+            PreparedStatement pst=conn.prepareStatement(sql);
+            pst.setString(1,id);
+            //System.out.println(sql);
+
+
+            ResultSet rs=pst.executeQuery();
+
+
+            if(rs.next()==true){
+                String nombre, descripcion, precio, stock;
+                nombre=rs.getString(2);
+                descripcion=rs.getString(3);
+                precio=rs.getString(4);
+                stock=rs.getString(6);
+
+                System.out.println();
+                textNombre.setText(nombre);
+                textDescripcion.setText(descripcion);
+                textPrecio.setText(precio);
+                textStock.setText(stock);
+
+            }
+            else {
+                //textMensaje.setText("no se encuentra el producto");
+                JOptionPane.showMessageDialog(null,"no se encuentra el producto");
+                limpiar();
+            }
+            stmt.close();
+            conn.close();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL incorrecto");
+
+        }
+    }
+
+    public void actualizar(){
+        String id, nombre, descripcion, precio, stock;
+        id=textid.getText();
+        nombre=textNombre.getText();
+        descripcion=textDescripcion.getText();
+        precio=textPrecio.getText();
+        stock=textStock.getText();
+
+
+
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME="root";
+        final String PASSWORD="";
+
+
+        try{
+            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+            Statement stmt= conn.createStatement();
+            String sql="update productos set nombre=?, descripcion=?,precio=?,stock=? where id=?";
+            PreparedStatement pst=conn.prepareStatement(sql);
+            pst.setString(1,nombre);
+            pst.setString(2,descripcion);
+            pst.setString(3,precio);
+            pst.setString(4,stock);
+            pst.setString(5,id);
+            //ResultSet resultSet=pst.executeQuery();
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Registro actualizado");
+            stmt.close();
+            conn.close();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL incorrecto");
+
+        }
+    }
+
+    public void eliminar(){
+        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME="root";
+        final String PASSWORD="";
+        String borrarid=textid.getText();
+
+        try{
+            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+            Statement stmt= conn.createStatement();
+            String sql="delete from productos where id=?";
+            PreparedStatement pst=conn.prepareStatement(sql);
+            pst.setString(1,borrarid);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Registro borrado");
+            stmt.close();
+            conn.close();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL incorrecto");
+
+        }
+    }
+
+    public static void main(String[] args) {
+        Bodeguero bodegueros = new Bodeguero();
     }
 }
