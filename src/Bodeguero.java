@@ -17,6 +17,9 @@ public class Bodeguero extends JFrame {
     private JButton limpiarButton;
     private JButton buscarButton;
     private JTextField textid;
+    public static void main(String[] args) {
+        Bodeguero bodegueros = new Bodeguero();
+    }
 
     DefaultTableModel model = new DefaultTableModel();
     String producto, id, stock, precio;
@@ -259,7 +262,4 @@ public class Bodeguero extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        Bodeguero bodegueros = new Bodeguero();
-    }
 }
