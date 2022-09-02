@@ -227,7 +227,7 @@ public class Bodeguero extends JFrame {
         try{
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql="update registro_prod set nombre=?, descripcion=?,precio=?,stock=? where id=?";
+            String sql="update registro_prod set nombre=?, descripcion=?,precio=?, cantidad=?, stock=? where id=?";
             PreparedStatement pst=conn.prepareStatement(sql);
             pst.setString(1,nombre);
             pst.setString(2,descripcion);
@@ -235,7 +235,7 @@ public class Bodeguero extends JFrame {
             pst.setString(4,stock);
             pst.setString(5, cantidad);
             pst.setString(6,id);
-            //ResultSet resultSet=pst.executeQuery();
+            ResultSet rs=pst.executeQuery();
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Registro actualizado");
             stmt.close();
