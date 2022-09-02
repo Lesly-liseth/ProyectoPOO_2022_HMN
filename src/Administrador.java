@@ -25,9 +25,13 @@ public class Administrador extends JFrame {
         conectar1();
         bodegueroButton.addActionListener(new ActionListener() {
             @Override
+
             public void actionPerformed(ActionEvent e) {
                 bodeguero();
             }
+
+            public void actionPerformed(ActionEvent e) { }
+
         });
 
         cajeroButton.addActionListener(new ActionListener() {
@@ -67,6 +71,7 @@ public class Administrador extends JFrame {
 
     }
 
+
     public void bodeguero() {
         String producto, id, stock, precio;
         producto = productoTF.getText();
@@ -102,3 +107,7 @@ public class Administrador extends JFrame {
         }
     }
 }
+
+
+
+
