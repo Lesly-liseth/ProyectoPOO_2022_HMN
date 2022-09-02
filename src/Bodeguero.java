@@ -18,7 +18,7 @@ public class Bodeguero extends JFrame {
     private JButton buscarButton;
     private JTextField textid;
     private JTable table1;
-    private JTextField textcantidad;
+    private JTextField textCantidad;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bienvenido al area de Bodeguero");
@@ -112,7 +112,7 @@ public class Bodeguero extends JFrame {
         nombre=textNombre.getText();
         descripcion=textDescripcion.getText();
         precio=textPrecio.getText();
-        cantidad=textcantidad.getText();
+        cantidad= textCantidad.getText();
         stock=textStock.getText();
         System.out.println(nombre);
         System.out.println(descripcion);
@@ -152,7 +152,7 @@ public class Bodeguero extends JFrame {
         textNombre.setText("");
         textDescripcion.setText("");
         textPrecio.setText("");
-        textcantidad.setText("");
+        textCantidad.setText("");
         textStock.setText("");
     }
 
@@ -189,7 +189,7 @@ public class Bodeguero extends JFrame {
                 textNombre.setText(nombre);
                 textDescripcion.setText(descripcion);
                 textPrecio.setText(precio);
-                textcantidad.setText(cantidad);
+                textCantidad.setText(cantidad);
                 textStock.setText(stock);
 
             }
@@ -214,9 +214,8 @@ public class Bodeguero extends JFrame {
         nombre=textNombre.getText();
         descripcion=textDescripcion.getText();
         precio=textPrecio.getText();
-        cantidad=textcantidad.getText();
+        cantidad=textCantidad.getText();
         stock=textStock.getText();
-
 
 
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
@@ -227,15 +226,15 @@ public class Bodeguero extends JFrame {
         try{
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql="update registro_prod set nombre=?, descripcion=?,precio=?, cantidad=?, stock=? where id=?";
+            String sql="update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=?,stock=? where id=?";
             PreparedStatement pst=conn.prepareStatement(sql);
             pst.setString(1,nombre);
             pst.setString(2,descripcion);
             pst.setString(3,precio);
-            pst.setString(4,stock);
-            pst.setString(5, cantidad);
+            pst.setString(4,cantidad);
+            pst.setString(5,stock);
             pst.setString(6,id);
-            ResultSet rs=pst.executeQuery();
+            //ResultSet rs=pst.executeQuery();
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Registro actualizado");
             stmt.close();
@@ -247,6 +246,7 @@ public class Bodeguero extends JFrame {
 
         }
     }
+
 
     public void eliminar(){
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
