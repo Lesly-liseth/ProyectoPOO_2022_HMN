@@ -18,6 +18,7 @@ public class Bodeguero extends JFrame {
     private JButton buscarButton;
     private JTextField textid;
     private JTable table1;
+    private JTextField textcantidad;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bienvenido al area de Bodeguero");
@@ -107,16 +108,16 @@ public class Bodeguero extends JFrame {
     }
 
     public void ingresar(){
-        String nombre, descripcion,precio, id, stock;
+        String nombre, descripcion,precio,cantidad = null, stock;
         nombre=textNombre.getText();
         descripcion=textDescripcion.getText();
         precio=textPrecio.getText();
+        cantidad=textcantidad.getText();
         stock=textStock.getText();
-        id= textNombre.getText();
-        System.out.println(id);
         System.out.println(nombre);
         System.out.println(descripcion);
         System.out.println(precio);
+        System.out.println(cantidad);
         System.out.println(stock);
 
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
@@ -127,15 +128,15 @@ public class Bodeguero extends JFrame {
         try{
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql="insert into registro_prod(nombre, descripcion, precio, stock)values(?,?,?,?)";
+            String sql="insert into registro_prod(nombre, descripcion, precio, cantidad, stock)values(?,?,?,?,?)";
             PreparedStatement pst=conn.prepareStatement(sql);
             pst.setString(1,nombre);
             pst.setString(2,descripcion);
             pst.setString(3,precio);
-            pst.setString(4,stock);
-            //ResultSet resultSet=pst.executeQuery();
+            pst.setString(4,cantidad);
+            pst.setString(5,stock);
             pst.executeUpdate();
-
+            JOptionPane.showMessageDialog(null,"Ingreso de Registro Realizado");
             stmt.close();
             conn.close();
 
@@ -151,6 +152,7 @@ public class Bodeguero extends JFrame {
         textNombre.setText("");
         textDescripcion.setText("");
         textPrecio.setText("");
+        textcantidad.setText("");
         textStock.setText("");
     }
 
@@ -176,16 +178,18 @@ public class Bodeguero extends JFrame {
 
 
             if(rs.next()==true){
-                String nombre, descripcion, precio, stock;
+                String nombre, descripcion, precio, cantidad, stock;
                 nombre=rs.getString(2);
                 descripcion=rs.getString(3);
                 precio=rs.getString(4);
+                cantidad=rs.getString(5);
                 stock=rs.getString(6);
 
                 System.out.println();
                 textNombre.setText(nombre);
                 textDescripcion.setText(descripcion);
                 textPrecio.setText(precio);
+                textcantidad.setText(cantidad);
                 textStock.setText(stock);
 
             }
@@ -205,11 +209,12 @@ public class Bodeguero extends JFrame {
     }
 
     public void actualizar(){
-        String id, nombre, descripcion, precio, stock;
+        String id, nombre, descripcion, precio,cantidad, stock;
         id=textid.getText();
         nombre=textNombre.getText();
         descripcion=textDescripcion.getText();
         precio=textPrecio.getText();
+        cantidad=textcantidad.getText();
         stock=textStock.getText();
 
 
@@ -228,7 +233,8 @@ public class Bodeguero extends JFrame {
             pst.setString(2,descripcion);
             pst.setString(3,precio);
             pst.setString(4,stock);
-            pst.setString(5,id);
+            pst.setString(5, cantidad);
+            pst.setString(6,id);
             //ResultSet resultSet=pst.executeQuery();
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Registro actualizado");
