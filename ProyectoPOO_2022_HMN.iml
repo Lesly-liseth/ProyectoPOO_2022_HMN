@@ -10,22 +10,19 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30" />
+          <root url="jar://$USER_HOME$/OneDrive - Escuela Politécnica Nacional/Documentos/JAVA/login/mysql-connector-java-8.0.30.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/build/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/demo/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/generated/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/legacy/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/main/core-api/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/main/core-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/main/protocol-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/main/user-api/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/main/user-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30/src/test/java" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.30" recursive="false" />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../ProyectoPOO_2022_HMN-main/prueba/itext5-itextpdf-5.5.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
