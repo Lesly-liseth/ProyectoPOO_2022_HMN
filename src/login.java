@@ -66,8 +66,8 @@ public class login extends JDialog{
         User user =null;
 
         final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME="cualquiera";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
 
 
         try{

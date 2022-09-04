@@ -1,5 +1,3 @@
-
-
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -69,7 +67,6 @@ public class cajero1 extends JFrame {
             }
         });
 
-
         finalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +104,6 @@ public class cajero1 extends JFrame {
         }
 
     }
-
     //funcion agregar a la tabla
     public void agregar(){
 
@@ -266,8 +262,8 @@ public class cajero1 extends JFrame {
             //AGREGAR PÁRRAFO AL ARCHIVO
             Paragraph titulo = new Paragraph(nom + "\n" + ruc + "\n" + fact + "\n" + num + "\n" + em + "\n");
             titulo.setAlignment(1);
-            doc.add(titulo);
-            doc.add(Chunk.NEWLINE);
+            doc.add(titulo); //AGREGAR AL ARCHIVO
+            doc.add(Chunk.NEWLINE);//AGREGAR UNA LINEA COMO ESPACIADO
 
             //DATOS DEL CLIENTE
             PdfPTable tabcli = new PdfPTable(6);
@@ -300,11 +296,10 @@ public class cajero1 extends JFrame {
             tabcli.addCell(correo.getText());
             tabcli.addCell(telefono.getText());
             tabcli.addCell(fecha.getText());
+            doc.add(tabcli);// AGREGAR AL DOCUMENTO
+            doc.add(Chunk.NEWLINE); //AGREGAR LINEA AL DOCUMENTO
 
-            doc.add(tabcli);
-
-            doc.add(Chunk.NEWLINE);
-
+            //AGREGAR ENCABEZADO DEL DETALLE DE LOS PRODUCTOS
             PdfPTable tab = new PdfPTable(6);
             tab.setWidthPercentage(100);
             PdfPCell id1 = new PdfPCell(new Phrase("Id"));
@@ -319,8 +314,7 @@ public class cajero1 extends JFrame {
             cant.setBackgroundColor(BaseColor.CYAN.brighter());
             PdfPCell subt = new PdfPCell(new Phrase("Subtotal"));
             subt.setBackgroundColor(BaseColor.YELLOW);
-
-
+            //AGREGAR EL ENCABEZADO AL DOCUMENTO
             tab.addCell(id1);
             tab.addCell(prod);
             tab.addCell(desc);
@@ -328,26 +322,25 @@ public class cajero1 extends JFrame {
             tab.addCell(cant);
             tab.addCell(subt);
 
+            //AGREGAR PRODUCTOS A LA TABLA DEL DOCUMENTO
             for (int row = 0; row < tabla.getRowCount(); row++) {
                 for (int column = 0; column < tabla.getColumnCount(); column++) {
                     tab.addCell(tabla.getValueAt(row, column).toString());
                 }
             }
 
-            doc.add(tab);
-
+            doc.add(tab); //AGREGAR AL DOCUMENTO
             doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
 
-            //total factura
+            //AGREGAR TOTAL FACTURA AL DOCUMENTO
             PdfPTable tabtot= new PdfPTable(1);
-            tabtot.setWidthPercentage(15);
-
+            tabtot.setWidthPercentage(15); //ESPACIO QUE OCUPARA LA TABLA DENTRO DEL DOCUMENTO
 
             PdfPCell tot = new PdfPCell(new Phrase("TOTAL"));
             tot.setBackgroundColor(BaseColor.RED);
             tot.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
-            tot.setBorder(0);
+            tot.setBorder(0);//SIN BORDE
             tabtot.addCell(tot);
             tabtot.addCell("$"+resultado.getText());
 
@@ -356,7 +349,7 @@ public class cajero1 extends JFrame {
 
 
         }catch (Exception ex){
-
+            JOptionPane.showMessageDialog(null,"NO SE PUDO ABRIR EL ARCHIVO");
         }
     }
     public static void main(String[] args) {

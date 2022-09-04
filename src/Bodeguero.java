@@ -121,8 +121,8 @@ public class Bodeguero extends JFrame {
         System.out.println(stock);
 
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
 
 
         try{
@@ -161,8 +161,8 @@ public class Bodeguero extends JFrame {
         id=textid.getText();
 
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
 
 
         try{
@@ -219,8 +219,8 @@ public class Bodeguero extends JFrame {
 
 
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
 
 
         try{
@@ -250,8 +250,8 @@ public class Bodeguero extends JFrame {
 
     public void eliminar(){
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
         String borrarid=textid.getText();
 
         try{
@@ -275,8 +275,8 @@ public class Bodeguero extends JFrame {
 
     public void ver(){
         final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
         
         model.addColumn("id");
         model.addColumn("nombre");
