@@ -25,7 +25,6 @@ public class cajero1 extends JFrame {
     private JButton bucar;
     private JButton finalizar;
     private JButton eliminar;
-    private JButton total;
     private JTextField cantidad;
     private JButton agregar;
     private JTextField resultado;
@@ -65,6 +64,7 @@ public class cajero1 extends JFrame {
                 agregar();
                 producto.setText("");
                 cantidad.setText("");
+                total();
 
             }
         });
@@ -76,12 +76,7 @@ public class cajero1 extends JFrame {
                 stock();
             }
         });
-        total.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                total();
-            }
-        });
+
         generar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -273,7 +268,7 @@ public class cajero1 extends JFrame {
         try {
             //CREACIÓN DE DOCUMENTO
             Document doc = new Document();
-            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/nuevo.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/nota_venta.pdf"));
             doc.open();
             //DATOS FARMACIA
 
