@@ -153,7 +153,6 @@ public class cajero1 extends JFrame {
             stmt.close();
             conn.close();
 
-
         }
         catch (SQLException ex){
 
@@ -161,9 +160,7 @@ public class cajero1 extends JFrame {
             JOptionPane.showMessageDialog(null,"Error de conección");
 
         }
-
     }
-
     public void actualizar(){
 
         final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";
@@ -172,7 +169,6 @@ public class cajero1 extends JFrame {
 
         String produ = producto.getText(); //variable que contendra el nombre del producto a agregar
         String buscar = ""; //inicializando variable
-
         String cant = cantidad.getText();
 
         if(!"".equals(produ)) //evaluación del campo producto mientras sea diferente de vacio
@@ -181,7 +177,6 @@ public class cajero1 extends JFrame {
         }
 
         try {
-
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -193,8 +188,6 @@ public class cajero1 extends JFrame {
             pst.executeUpdate();
             stmt.close();
             conn.close();
-
-
         }
         catch (SQLException ex){
 
@@ -202,8 +195,6 @@ public class cajero1 extends JFrame {
             JOptionPane.showMessageDialog(null,"Ingrese la cantidad del producto");
 
         }
-
-
     }
 
     public void stock(){
@@ -215,14 +206,12 @@ public class cajero1 extends JFrame {
         String produ = producto.getText(); //variable que contendra el nombre del producto a agregar
         String buscar = ""; //inicializando variable
 
-
         if(!"".equals(produ)) //evaluación del campo producto mientras sea diferente de vacio
         {
             buscar = "WHERE nombre = '" + produ + "'";
         }
 
         try {
-
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -241,9 +230,7 @@ public class cajero1 extends JFrame {
             JOptionPane.showMessageDialog(null,"Stock");
 
         }
-
     }
-
     public void total(){
 
         double acum = 0;
@@ -255,9 +242,7 @@ public class cajero1 extends JFrame {
             tot+=acum;
         }
         resultado.setText(""+tot);
-
     }
-
       public void eliminar_registo(){
         int fila = tabla.getSelectedRow();
         model.removeRow(fila);
@@ -268,46 +253,47 @@ public class cajero1 extends JFrame {
         try {
             //CREACIÓN DE DOCUMENTO
             Document doc = new Document();
-            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/nota_venta.pdf"));
-            doc.open();
+            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/nota_venta.pdf")); //RUTA DE GUARDADO DE ARCHIVO
+            doc.open(); //ABRIR ARCHIVO
+
             //DATOS FARMACIA
-
-
             String nom = "FARMACIA EL AHORRO";
             String ruc = "1726895160001";
             String fact = "NOTA DE VENTA";
             String num = "022618620/0992626788";
             String em = "farmaAhorro12@gmail.com";
 
+            //AGREGAR PÁRRAFO AL ARCHIVO
             Paragraph titulo = new Paragraph(nom + "\n" + ruc + "\n" + fact + "\n" + num + "\n" + em + "\n");
             titulo.setAlignment(1);
             doc.add(titulo);
             doc.add(Chunk.NEWLINE);
 
+            //DATOS DEL CLIENTE
             PdfPTable tabcli = new PdfPTable(6);
             tabcli.setWidthPercentage(100);
-            tabcli.getDefaultCell().setBorder(0);
+            tabcli.getDefaultCell().setBorder(0); //BORDE DE LA TABLA
             PdfPCell ced = new PdfPCell(new Phrase("CÉDULA "));
             PdfPCell nomb = new PdfPCell(new Phrase("NOMBRE "));
             PdfPCell dir = new PdfPCell(new Phrase("DIRECCIÓN "));
             PdfPCell corr = new PdfPCell(new Phrase("CORREO "));
             PdfPCell tel = new PdfPCell(new Phrase("TELEFONO "));
             PdfPCell fec = new PdfPCell(new Phrase("FECHA "));
-
+            //BORDE DE LA TABLA
             ced.setBorder(0);
             nomb.setBorder(0);
             dir.setBorder(0);
             corr.setBorder(0);
             tel.setBorder(0);
             fec.setBorder(0);
-
+            //AGREGAR ETIQUETAS
             tabcli.addCell(ced);
             tabcli.addCell(nomb);
             tabcli.addCell(dir);
             tabcli.addCell(corr);
             tabcli.addCell(tel);
             tabcli.addCell(fec);
-
+            //AGREGAR DATOS DEL CLIENTE
             tabcli.addCell(cedula.getText());
             tabcli.addCell(nombre.getText());
             tabcli.addCell(direccion.getText());
@@ -365,7 +351,6 @@ public class cajero1 extends JFrame {
             tabtot.addCell(tot);
             tabtot.addCell("$"+resultado.getText());
 
-
             doc.add(tabtot);
             doc.close();
 
@@ -374,9 +359,6 @@ public class cajero1 extends JFrame {
 
         }
     }
-
-
-
     public static void main(String[] args) {
         cajero1 cajeros = new cajero1();
     }
