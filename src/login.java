@@ -16,7 +16,7 @@ public class login extends JDialog{
     private JButton bodegueroButton;
     private JFormattedTextField formattedTextField1;
 
-    public User user;
+    public Admi user;
     public login(JFrame parent){
         super(parent);
         setTitle("Login");
@@ -62,10 +62,10 @@ public class login extends JDialog{
     }
 
 
-    private User getAuthenticationUser(String email, String password){
-        User user =null;
+    private Admi getAuthenticationUser(String email, String password){
+        Admi admi =null;
 
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
+        final String DB_URL="jdbc:mysql://localhost/admi?serverTimezone=UTC";
         final String USERNAME="pame";
         final String PASSWORD="1234";
 
@@ -73,7 +73,7 @@ public class login extends JDialog{
         try{
             Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql="SELECT * FROM usuario WHERE EMAIL=? AND CONTRASEÑA=?";
+            String sql="SELECT * FROM admi WHERE em_A=? AND con_A=?";
             PreparedStatement preparedStatement=conn.prepareStatement(sql);
             preparedStatement.setString(1,email);
             preparedStatement.setString(2,password);
@@ -81,12 +81,12 @@ public class login extends JDialog{
             ResultSet resultSet=preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                user=new User();
-                user.NOMBRE=resultSet.getString("NOMBRE");
-                user.EMAIL=resultSet.getString("EMAIL");
-                user.CELULAR=resultSet.getString("CELULAR");
-                user.DIRECCION=resultSet.getString("DIRECCION");
-                user.CONTRASEÑA=resultSet.getString("CONTRASEÑA");
+                admi=new Admi();
+                admi.NOMBRE=resultSet.getString("NOMBRE");
+                admi.EMAIL=resultSet.getString("EMAIL");
+                admi.CELULAR=resultSet.getString("CELULAR");
+                admi.DIRECCION=resultSet.getString("DIRECCION");
+                admi.CONTRASEÑA=resultSet.getString("CONTRASEÑA");
             }
 
             stmt.close();
@@ -97,12 +97,12 @@ public class login extends JDialog{
             e.printStackTrace();
         }
 
-        return user;
+        return admi;
     }
-    
+
     public static void main(String[] args) {
         login login=new login(null);
-        User user =login.user;
+        Admi user =login.user;
 
         if(user!=null){
             System.out.println("Autenticacion correcta:"+user.NOMBRE);

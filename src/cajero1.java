@@ -80,6 +80,13 @@ public class cajero1 extends JFrame {
                 generar_nota();
             }
         });
+        LIMPIARButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiar_tabla();
+                resultado.setText("");
+            }
+        });
     }
 
     Connection con;
@@ -249,7 +256,7 @@ public class cajero1 extends JFrame {
         try {
             //CREACIÓN DE DOCUMENTO
             Document doc = new Document();
-            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/nota_venta.pdf")); //RUTA DE GUARDADO DE ARCHIVO
+            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/productos.pdf")); //RUTA DE GUARDADO DE ARCHIVO
             doc.open(); //ABRIR ARCHIVO
 
             //DATOS FARMACIA
@@ -351,6 +358,11 @@ public class cajero1 extends JFrame {
         }catch (Exception ex){
             JOptionPane.showMessageDialog(null,"NO SE PUDO ABRIR EL ARCHIVO");
         }
+    }
+
+    public void limpiar_tabla(){
+        model.getDataVector().removeAllElements();
+        tabla.updateUI();
     }
     public static void main(String[] args) {
         cajero1 cajeros = new cajero1();

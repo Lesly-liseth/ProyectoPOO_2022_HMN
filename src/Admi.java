@@ -1,6 +1,4 @@
-import javax.swing.*;
-
-public class User {
+public class Admi {
     public String NOMBRE;
     public String EMAIL;
     public String DIRECCION;
