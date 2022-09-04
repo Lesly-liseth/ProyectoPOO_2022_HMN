@@ -99,8 +99,7 @@ public class login extends JDialog{
 
         return user;
     }
-
-
+    
     public static void main(String[] args) {
         login login=new login(null);
         User user =login.user;
