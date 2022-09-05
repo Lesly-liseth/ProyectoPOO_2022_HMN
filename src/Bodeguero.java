@@ -217,6 +217,7 @@ public class Bodeguero extends JFrame implements ActionListener{
     }
 
     public void actualizar() {
+
         String id, nombre, descripcion, precio, cantidad, stock;
         id = textid.getText();
         nombre = textNombre.getText();
@@ -225,11 +226,9 @@ public class Bodeguero extends JFrame implements ActionListener{
         cantidad = textCantidad.getText();
         stock = textStock.getText();
 
-
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
-
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -281,6 +280,7 @@ public class Bodeguero extends JFrame implements ActionListener{
     }
 
     public void ver() {
+        
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";

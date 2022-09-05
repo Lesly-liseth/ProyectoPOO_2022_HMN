@@ -272,7 +272,7 @@ public class cajero1 extends JFrame implements ActionListener{
         try {
             //CREACIÓN DE DOCUMENTO
             Document doc = new Document();
-            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/productos.pdf")); //RUTA DE GUARDADO DE ARCHIVO
+            PdfWriter.getInstance(doc, new FileOutputStream("src/pdf/Nota_Venta_"+nombre.getText()+".pdf")); //RUTA DE GUARDADO DE ARCHIVO
             doc.open(); //ABRIR ARCHIVO
 
             //DATOS FARMACIA
