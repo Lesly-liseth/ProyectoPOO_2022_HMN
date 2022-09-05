@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
+import java.awt.event.ComponentAdapter;import java.sql.*;
 
 public class admi extends JFrame implements ActionListener {
     private JMenuBar mb;
@@ -14,12 +14,13 @@ public class admi extends JFrame implements ActionListener {
     private JTextField preciotext;
     private JTextField CantidadTF;
     private JButton actualizarbtn;
-    private JButton BORRARButton;
     private JButton LIMPIARButton;
     private JButton BUSCARButton;
-    private JButton BORRARButton1;
+    private JButton ELIMINARButton;
     private JPanel mainPanel;
     private JTable table1;
+    private JButton AÑADIRButton;
+    private JButton VERButton;
     DefaultTableModel model = new DefaultTableModel();
     public admi() {
 
@@ -39,56 +40,38 @@ public class admi extends JFrame implements ActionListener {
         setLocationRelativeTo(null); // aparece la ventana en el centro
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        table.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
+        BUSCARButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {buscar();}
         });
-        actualizarButton.addActionListener(new ActionListener() {
+        ELIMINARButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                actualizar();
-            }
+            public void actionPerformed(ActionEvent e) {eliminar();}
         });
-
-
-        eliminarButton.addActionListener(new ActionListener() {
+        actualizarbtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                eliminar();
-            }
+            public void actionPerformed(ActionEvent e) {actualizar();}
+        });
+        AÑADIRButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {añadir();}
         });
 
-        limpiarButton.addActionListener(new ActionListener() {
+
+        LIMPIARButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                limpiar();
-            }
+            public void actionPerformed(ActionEvent e) {limpiar(); }
         });
 
-        buscarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buscar();
-            }
-        });
-        ingresarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                ingresar();
-
-            }
-        });
-
-        table.addActionListener(new ActionListener() {
+        VERButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ver();
             }
         });
-    }
+
+    table1.addComponentListener(new ComponentAdapter() { } );}
 
     Connection con;
     PreparedStatement pst;
@@ -113,34 +96,32 @@ public class admi extends JFrame implements ActionListener {
 
     }
 
-    public void ingresar() {
+    public void añadir() {
         String nombre, descripcion, precio, cantidad = null, stock;
-        nombre = textNombre.getText();
-        descripcion = textDescripcion.getText();
-        precio = textPrecio.getText();
-        cantidad = textCantidad.getText();
-        stock = textStock.getText();
+        nombre = nombreTF.getText();
+        descripcion = descripciontextf.getText();
+        precio = preciotext.getText();
+        cantidad = CantidadTF.getText();
+
         System.out.println(nombre);
         System.out.println(descripcion);
         System.out.println(precio);
         System.out.println(cantidad);
-        System.out.println(stock);
 
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
 
-
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "insert into registro_prod(nombre, descripcion, precio, cantidad, stock)values(?,?,?,?,?)";
+            String sql = "insert into registro_prod(nombre, descripcion, precio, cantidad)values(?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, nombre);
             pst.setString(2, descripcion);
             pst.setString(3, precio);
             pst.setString(4, cantidad);
-            pst.setString(5, stock);
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Ingreso de Registro Realizado");
             stmt.close();
@@ -154,17 +135,17 @@ public class admi extends JFrame implements ActionListener {
     }
 
     public void limpiar() {
-        textid.setText("");
-        textNombre.setText("");
-        textDescripcion.setText("");
-        textPrecio.setText("");
-        textCantidad.setText("");
-        textStock.setText("");
+        IDTF.setText("");
+        nombreTF.setText("");
+        descripciontextf.setText("");
+        preciotext.setText("");
+        CantidadTF.setText("");
+
     }
 
     public void buscar() {
         String id = "0";
-        id = textid.getText();
+        id = IDTF.getText();
 
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
@@ -189,18 +170,18 @@ public class admi extends JFrame implements ActionListener {
                 descripcion = rs.getString(3);
                 precio = rs.getString(4);
                 cantidad = rs.getString(5);
-                stock = rs.getString(6);
+
 
                 System.out.println();
-                textNombre.setText(nombre);
-                textDescripcion.setText(descripcion);
-                textPrecio.setText(precio);
-                textCantidad.setText(cantidad);
-                textStock.setText(stock);
+                nombreTF.setText(nombre);
+                descripciontextf.setText(descripcion);
+                preciotext.setText(precio);
+                CantidadTF.setText(cantidad);
+
 
             } else {
                 //textMensaje.setText("no se encuentra el producto");
-                JOptionPane.showMessageDialog(null, "no se encuentra el producto");
+                JOptionPane.showMessageDialog(null, "No se encuentra el producto");
                 limpiar();
             }
             stmt.close();
@@ -215,12 +196,12 @@ public class admi extends JFrame implements ActionListener {
 
     public void actualizar() {
         String id, nombre, descripcion, precio, cantidad, stock;
-        id = textid.getText();
-        nombre = textNombre.getText();
-        descripcion = textDescripcion.getText();
-        precio = textPrecio.getText();
-        cantidad = textCantidad.getText();
-        stock = textStock.getText();
+        id = IDTF.getText();
+        nombre = nombreTF.getText();
+        descripcion = descripciontextf.getText();
+        precio = preciotext.getText();
+        cantidad = CantidadTF.getText();
+
 
 
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
@@ -231,14 +212,13 @@ public class admi extends JFrame implements ActionListener {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=?,stock=? where id=?";
+            String sql = "update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=? where id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, nombre);
             pst.setString(2, descripcion);
             pst.setString(3, precio);
             pst.setString(4, cantidad);
-            pst.setString(5, stock);
-            pst.setString(6, id);
+            pst.setString(5, id);
             //ResultSet rs=pst.executeQuery();
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro actualizado");
@@ -256,7 +236,7 @@ public class admi extends JFrame implements ActionListener {
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
-        String borrarid = textid.getText();
+        String borrarid = IDTF.getText();
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -287,9 +267,8 @@ public class admi extends JFrame implements ActionListener {
         model.addColumn("descripcion");
         model.addColumn("precio");
         model.addColumn("cantidad");
-        model.addColumn("stock");
         table1.setModel(model);
-        String[] dato = new String[6];
+        String[] dato = new String[5];
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -302,7 +281,6 @@ public class admi extends JFrame implements ActionListener {
                 dato[2] = rs.getString(3);
                 dato[3] = rs.getString(4);
                 dato[4] = rs.getString(5);
-                dato[5] = rs.getString(6);
                 model.addRow(dato);
             }
             table1.setModel(model);
@@ -315,7 +293,7 @@ public class admi extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        Bodeguero bodeguero = new Bodeguero();
+        admi administrador = new admi();
     }
 
     @Override

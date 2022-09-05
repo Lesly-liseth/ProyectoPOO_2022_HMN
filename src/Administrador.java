@@ -12,7 +12,7 @@ public class Administrador extends JFrame {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Administrador");
-        Administrador admi = new Administrador();
+        Administrador administrador = new Administrador();
     }
 
     public Administrador() {
