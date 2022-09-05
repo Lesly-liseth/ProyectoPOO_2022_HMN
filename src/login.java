@@ -13,10 +13,10 @@ public class login extends JFrame {
 
     public login() {
 
-
         setTitle("Login");
         setSize(720, 480);
         setContentPane(mainPanel);
+        setLocationRelativeTo(null); // aparece la ventana en el centro
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -45,27 +45,37 @@ public class login extends JFrame {
                             if (r.equals("cajero")) {
 
                                 System.out.println("Bienvenido cajero");
+                                cajero1 cajero = new cajero1();
+                                cajero.setVisible(true);
+                                dispose();
 
                             } else if (r.equals("administrador")) {
-                                System.out.println("Bienvenido admin");
+                                System.out.println("Bienvenido administrador");
+                                Administrador administrador = new Administrador();
+                                administrador.setVisible(true);
+                                dispose();
 
                             } else if(r.equals("bodeguero")){
                                 System.out.println("Bienvenido bodeguero");
-                            }
-                            else{
-                                System.out.println("USUARIO NO REGISTRADO");
+                                Bodeguero bodeguero = new Bodeguero();
+                                bodeguero.setVisible(true);
+                                dispose();
                             }
 
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA");
+                            JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTOS");
+
                         }
                     }
                 }
                 catch (SQLException ex){
                     ex.printStackTrace();
-                    System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS2");
+                    System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS");
                 }
+
+
+
             }
         });
         cancelar.addActionListener(new ActionListener() {
@@ -94,7 +104,7 @@ public class login extends JFrame {
         } catch (SQLException ex) {
 
             ex.printStackTrace();
-            System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS1");
+            System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS");
             return null;
         }
 

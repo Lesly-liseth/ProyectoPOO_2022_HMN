@@ -35,18 +35,15 @@ public class cajero1 extends JFrame {
         conectar();
 
         setTitle("FACTURACIÓN");
-        setSize(720, 500);
+        setSize(720, 480);
         setContentPane(panel);
-
+        setLocationRelativeTo(null); // aparece la ventana en el centro
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-
 
         String[] titulo = new String[]{"ID", "PRODUCTO", "DESCRIPCION", "PRECIO", "CANTIDAD", "SUBTOTAL"};
         model.setColumnIdentifiers(titulo);
         tabla.setModel(model);
-
-
 
         eliminar.addActionListener(new ActionListener() {
             @Override

@@ -19,20 +19,16 @@ public class Bodeguero extends JFrame {
     private JTextField textid;
     private JTable table1;
     private JTextField textCantidad;
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Bienvenido al area de Bodeguero");
-        frame.setContentPane(new Bodeguero().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     DefaultTableModel model = new DefaultTableModel();
 
     public Bodeguero() {
         conectar();
-
+        setTitle("BODEGA");
+        setSize(720, 480);
+        setContentPane(mainPanel);
+        setLocationRelativeTo(null); // aparece la ventana en el centro
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
         table.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,68 +82,68 @@ public class Bodeguero extends JFrame {
 
     Connection con;
     PreparedStatement pst;
-    public void conectar(){
 
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="root";
-        final String PASSWORD="";
+    public void conectar() {
 
-        try{
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+        try {
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
             System.out.println("conexion exitosa");
 
 
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
         }
 
     }
 
-    public void ingresar(){
-        String nombre, descripcion,precio,cantidad = null, stock;
-        nombre=textNombre.getText();
-        descripcion=textDescripcion.getText();
-        precio=textPrecio.getText();
-        cantidad= textCantidad.getText();
-        stock=textStock.getText();
+    public void ingresar() {
+        String nombre, descripcion, precio, cantidad = null, stock;
+        nombre = textNombre.getText();
+        descripcion = textDescripcion.getText();
+        precio = textPrecio.getText();
+        cantidad = textCantidad.getText();
+        stock = textStock.getText();
         System.out.println(nombre);
         System.out.println(descripcion);
         System.out.println(precio);
         System.out.println(cantidad);
         System.out.println(stock);
 
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            String sql="insert into registro_prod(nombre, descripcion, precio, cantidad, stock)values(?,?,?,?,?)";
-            PreparedStatement pst=conn.prepareStatement(sql);
-            pst.setString(1,nombre);
-            pst.setString(2,descripcion);
-            pst.setString(3,precio);
-            pst.setString(4,cantidad);
-            pst.setString(5,stock);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "insert into registro_prod(nombre, descripcion, precio, cantidad, stock)values(?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            pst.setString(2, descripcion);
+            pst.setString(3, precio);
+            pst.setString(4, cantidad);
+            pst.setString(5, stock);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Ingreso de Registro Realizado");
+            JOptionPane.showMessageDialog(null, "Ingreso de Registro Realizado");
             stmt.close();
             conn.close();
 
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
         }
     }
 
-    public void limpiar(){
+    public void limpiar() {
         textid.setText("");
         textNombre.setText("");
         textDescripcion.setText("");
@@ -156,34 +152,34 @@ public class Bodeguero extends JFrame {
         textStock.setText("");
     }
 
-    public void buscar(){
-        String id="0";
-        id=textid.getText();
+    public void buscar() {
+        String id = "0";
+        id = textid.getText();
 
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            String sql="select * from registro_prod where id=?";
-            PreparedStatement pst=conn.prepareStatement(sql);
-            pst.setString(1,id);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "select * from registro_prod where id=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, id);
             //System.out.println(sql);
 
 
-            ResultSet rs=pst.executeQuery();
+            ResultSet rs = pst.executeQuery();
 
 
-            if(rs.next()==true){
+            if (rs.next() == true) {
                 String nombre, descripcion, precio, cantidad, stock;
-                nombre=rs.getString(2);
-                descripcion=rs.getString(3);
-                precio=rs.getString(4);
-                cantidad=rs.getString(5);
-                stock=rs.getString(6);
+                nombre = rs.getString(2);
+                descripcion = rs.getString(3);
+                precio = rs.getString(4);
+                cantidad = rs.getString(5);
+                stock = rs.getString(6);
 
                 System.out.println();
                 textNombre.setText(nombre);
@@ -192,55 +188,54 @@ public class Bodeguero extends JFrame {
                 textCantidad.setText(cantidad);
                 textStock.setText(stock);
 
-            }
-            else {
+            } else {
                 //textMensaje.setText("no se encuentra el producto");
-                JOptionPane.showMessageDialog(null,"no se encuentra el producto");
+                JOptionPane.showMessageDialog(null, "no se encuentra el producto");
                 limpiar();
             }
             stmt.close();
             conn.close();
 
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
         }
     }
 
-    public void actualizar(){
-        String id, nombre, descripcion, precio,cantidad, stock;
-        id=textid.getText();
-        nombre=textNombre.getText();
-        descripcion=textDescripcion.getText();
-        precio=textPrecio.getText();
-        cantidad=textCantidad.getText();
-        stock=textStock.getText();
+    public void actualizar() {
+        String id, nombre, descripcion, precio, cantidad, stock;
+        id = textid.getText();
+        nombre = textNombre.getText();
+        descripcion = textDescripcion.getText();
+        precio = textPrecio.getText();
+        cantidad = textCantidad.getText();
+        stock = textStock.getText();
 
 
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            String sql="update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=?,stock=? where id=?";
-            PreparedStatement pst=conn.prepareStatement(sql);
-            pst.setString(1,nombre);
-            pst.setString(2,descripcion);
-            pst.setString(3,precio);
-            pst.setString(4,cantidad);
-            pst.setString(5,stock);
-            pst.setString(6,id);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=?,stock=? where id=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            pst.setString(2, descripcion);
+            pst.setString(3, precio);
+            pst.setString(4, cantidad);
+            pst.setString(5, stock);
+            pst.setString(6, id);
             //ResultSet rs=pst.executeQuery();
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro actualizado");
+            JOptionPane.showMessageDialog(null, "Registro actualizado");
             stmt.close();
             conn.close();
 
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
@@ -248,36 +243,36 @@ public class Bodeguero extends JFrame {
     }
 
 
-    public void eliminar(){
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
-        String borrarid=textid.getText();
+    public void eliminar() {
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
+        String borrarid = textid.getText();
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            String sql="delete from registro_prod where id=?";
-            PreparedStatement pst=conn.prepareStatement(sql);
-            pst.setString(1,borrarid);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "delete from registro_prod where id=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, borrarid);
 
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro borrado");
+            JOptionPane.showMessageDialog(null, "Registro borrado");
             stmt.close();
             conn.close();
 
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
         }
     }
 
-    public void ver(){
-        final String DB_URL="jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
-        
+    public void ver() {
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
+
         model.addColumn("id");
         model.addColumn("nombre");
         model.addColumn("descripcion");
@@ -287,26 +282,32 @@ public class Bodeguero extends JFrame {
         table1.setModel(model);
         String[] dato = new String[6];
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            ResultSet rs=pst.executeQuery( "SELECT * FROM registro_prod");
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = pst.executeQuery("SELECT * FROM registro_prod");
 
             while (rs.next()) {
-                dato[0]=rs.getString(1);
-                dato[1]=rs.getString(2);
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(4);
-                dato[4]=rs.getString(5);
-                dato[5]=rs.getString(6);
+                dato[0] = rs.getString(1);
+                dato[1] = rs.getString(2);
+                dato[2] = rs.getString(3);
+                dato[3] = rs.getString(4);
+                dato[4] = rs.getString(5);
+                dato[5] = rs.getString(6);
                 model.addRow(dato);
             }
             table1.setModel(model);
-        } catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("SQL incorrecto");
 
         }
     }
 
+    public static void main(String[] args) {
+
+        Bodeguero bodeguero = new Bodeguero();
+    }
 }
+
+
