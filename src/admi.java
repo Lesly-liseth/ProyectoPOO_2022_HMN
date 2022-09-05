@@ -194,7 +194,7 @@ public class admi extends JFrame implements ActionListener {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "update registro_prod set nombre=?,descripcion=?,precio=?,cantidad=? where id=?";
+            String sql = "update registro_prod set email=?,password=?,rol=? where id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, email);
             pst.setString(2, password);
