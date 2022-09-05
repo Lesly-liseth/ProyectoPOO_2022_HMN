@@ -98,9 +98,9 @@ public class Bodeguero extends JFrame implements ActionListener{
 
     public void conectar() {
 
-        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
-        final String USERNAME = "pame";
-        final String PASSWORD = "1234";
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
 
         try {
 
@@ -129,9 +129,9 @@ public class Bodeguero extends JFrame implements ActionListener{
         System.out.println(cantidad);
         System.out.println(stock);
 
-        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
-        final String USERNAME = "pame";
-        final String PASSWORD = "1234";
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
 
 
         try {
@@ -169,9 +169,9 @@ public class Bodeguero extends JFrame implements ActionListener{
         String id = "0";
         id = textid.getText();
 
-        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
-        final String USERNAME = "pame";
-        final String PASSWORD = "1234";
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
 
 
         try {
@@ -180,7 +180,6 @@ public class Bodeguero extends JFrame implements ActionListener{
             String sql = "select * from registro_prod where id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, id);
-            //System.out.println(sql);
 
 
             ResultSet rs = pst.executeQuery();
@@ -226,9 +225,16 @@ public class Bodeguero extends JFrame implements ActionListener{
         cantidad = textCantidad.getText();
         stock = textStock.getText();
 
+
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
+
+
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
+
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -255,9 +261,9 @@ public class Bodeguero extends JFrame implements ActionListener{
     }
     public void eliminar() {
 
-        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
-        final String USERNAME = "pame";
-        final String PASSWORD = "1234";
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
         String borrarid = textid.getText();
 
         try {
@@ -280,6 +286,7 @@ public class Bodeguero extends JFrame implements ActionListener{
     }
 
     public void ver() {
+
         
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
@@ -294,24 +301,45 @@ public class Bodeguero extends JFrame implements ActionListener{
         table1.setModel(model);
         String[] dato = new String[6];
 
+        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
+
+
         try {
+
+
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            ResultSet rs = pst.executeQuery("SELECT * FROM registro_prod");
+            ResultSet rs = null;
+
+            String sql = "SELECT id,nombre,descripcion,precio,cantidad, precio*cantidad  FROM registro_prod  ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+
+
+            ResultSetMetaData datos = rs.getMetaData();
+            int colum = datos.getColumnCount();
 
             while (rs.next()) {
-                dato[0] = rs.getString(1);
-                dato[1] = rs.getString(2);
-                dato[2] = rs.getString(3);
-                dato[3] = rs.getString(4);
-                dato[4] = rs.getString(5);
-                dato[5] = rs.getString(6);
-                model.addRow(dato);
+
+                Object[] filas = new Object[colum];
+                for (int i = 0; i < colum; i++) {
+                    filas[i] = rs.getObject(i+1);
+
+                }
+                model.addRow(filas);
+
             }
-            table1.setModel(model);
-        } catch (SQLException ex) {
+
+            stmt.close();
+            conn.close();
+
+        }
+        catch (SQLException ex){
+
             ex.printStackTrace();
-            System.out.println("SQL incorrecto");
+            JOptionPane.showMessageDialog(null,"Error de conección");
 
         }
     }
