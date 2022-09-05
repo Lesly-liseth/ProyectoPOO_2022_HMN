@@ -259,8 +259,6 @@ public class admi extends JFrame implements ActionListener {
 
         }
     }
-
-
 }
 
 
