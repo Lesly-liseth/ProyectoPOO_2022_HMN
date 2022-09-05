@@ -29,7 +29,8 @@
         <properties>
           <font name="Consolas" size="20" style="1"/>
           <foreground color="-3574607"/>
-          <text value="Nombre"/>
+          <labelFor value="e9916"/>
+          <text value="EMAIL"/>
         </properties>
       </component>
       <component id="3a9ac" class="javax.swing.JLabel">
@@ -39,7 +40,8 @@
         <properties>
           <font name="Consolas" size="20" style="1"/>
           <foreground color="-3574607"/>
-          <text value="Descripcion"/>
+          <labelFor value="59698"/>
+          <text value="PASSWORD"/>
         </properties>
       </component>
       <component id="76b9b" class="javax.swing.JLabel">
@@ -49,20 +51,10 @@
         <properties>
           <font name="Consolas" size="20" style="1"/>
           <foreground color="-3574607"/>
-          <text value="Precio"/>
+          <text value="ROL"/>
         </properties>
       </component>
-      <component id="9131c" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Consolas" size="20" style="1"/>
-          <foreground color="-3574607"/>
-          <text value="Cantidad"/>
-        </properties>
-      </component>
-      <component id="59698" class="javax.swing.JTextField" binding="descripciontextf">
+      <component id="59698" class="javax.swing.JTextField" binding="passTF">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -72,7 +64,7 @@
           <background color="-3948427"/>
         </properties>
       </component>
-      <component id="364fd" class="javax.swing.JTextField" binding="preciotext">
+      <component id="364fd" class="javax.swing.JTextField" binding="rolTF">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -80,17 +72,6 @@
         </constraints>
         <properties>
           <background color="-3948427"/>
-        </properties>
-      </component>
-      <component id="f7fe7" class="javax.swing.JTextField" binding="CantidadTF">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-3948427"/>
-          <text value=""/>
         </properties>
       </component>
       <component id="dd12f" class="javax.swing.JLabel">
@@ -103,14 +84,6 @@
           <text value="ADMINISTRADOR"/>
         </properties>
       </component>
-      <component id="626ed" class="javax.swing.JButton" binding="LIMPIARButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="LIMPIAR"/>
-        </properties>
-      </component>
       <component id="dce55" class="javax.swing.JTextField" binding="IDTF">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -121,15 +94,7 @@
           <background color="-3948427"/>
         </properties>
       </component>
-      <component id="bff3d" class="javax.swing.JButton" binding="BUSCARButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="BUSCAR"/>
-        </properties>
-      </component>
-      <component id="e9916" class="javax.swing.JTextField" binding="nombreTF">
+      <component id="e9916" class="javax.swing.JTextField" binding="emailTF">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -140,30 +105,6 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="e53e8" class="javax.swing.JButton" binding="ELIMINARButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="ELIMINAR"/>
-        </properties>
-      </component>
-      <component id="dda0f" class="javax.swing.JButton" binding="AÑADIRButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="AÑADIR"/>
-        </properties>
-      </component>
-      <component id="7a9cd" class="javax.swing.JButton" binding="actualizarbtn">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="ACTUALIZAR"/>
-        </properties>
-      </component>
       <component id="126c3" class="javax.swing.JTable" binding="table1" default-binding="true">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -172,12 +113,41 @@
         </constraints>
         <properties/>
       </component>
-      <component id="be32c" class="javax.swing.JButton" binding="VERButton" default-binding="true">
+      <component id="dda0f" class="javax.swing.JButton" binding="agregarButton">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="VER"/>
+          <text value="AGREGAR"/>
+        </properties>
+      </component>
+      <component id="e53e8" class="javax.swing.JButton" binding="eliminarButton">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="ELIMINAR"/>
+        </properties>
+      </component>
+      <component id="7a9cd" class="javax.swing.JButton" binding="editarbtn">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="EDITAR"/>
+        </properties>
+      </component>
+      <vspacer id="bd325">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="bff3d" class="javax.swing.JButton" binding="buscarButton">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="BUSCAR"/>
         </properties>
       </component>
     </children>
