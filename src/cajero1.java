@@ -5,12 +5,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
 import java.sql.*;
 
-public class cajero1 extends JFrame {
+
+public class cajero1 extends JFrame implements ActionListener{
+    private JMenuBar mb;
+    private JMenu menu1;
+    private JMenuItem m1;
     private JPanel panel;
     private JTextField cedula;
     private JTextField direccion;
@@ -29,17 +34,29 @@ public class cajero1 extends JFrame {
     private JButton LIMPIARButton;
     private JButton generar;
 
+
     DefaultTableModel model = new DefaultTableModel();
 
     public cajero1() {
-        conectar();
 
+        setLayout(null);
+        mb = new JMenuBar();
+        setJMenuBar(mb);
+        menu1 = new JMenu("REGRESAR");
+        mb.add(menu1);
+        m1 = new JMenuItem("Login");
+        menu1.add(m1);
+        m1.addActionListener(this);
+
+        conectar();
         setTitle("FACTURACIÓN");
         setSize(720, 480);
         setContentPane(panel);
         setLocationRelativeTo(null); // aparece la ventana en el centro
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+
+
 
         String[] titulo = new String[]{"ID", "PRODUCTO", "DESCRIPCION", "PRECIO", "CANTIDAD", "SUBTOTAL"};
         model.setColumnIdentifiers(titulo);
@@ -361,7 +378,19 @@ public class cajero1 extends JFrame {
         model.getDataVector().removeAllElements();
         tabla.updateUI();
     }
+
     public static void main(String[] args) {
-        cajero1 cajeros = new cajero1();
+        cajero1 cajero = new cajero1();
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==m1){
+            login log = new login();
+            log.setVisible(true);
+            dispose();
+
+        }
+
     }
 }

@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class Bodeguero extends JFrame {
+public class Bodeguero extends JFrame implements ActionListener{
+    private JMenuBar mb;
+    private JMenu menu1;
+    private JMenuItem m1;
     private JButton ingresarButton;
     private JButton table;
     private JButton actualizarButton;
@@ -22,6 +25,16 @@ public class Bodeguero extends JFrame {
     DefaultTableModel model = new DefaultTableModel();
 
     public Bodeguero() {
+
+        setLayout(null);
+        mb = new JMenuBar();
+        setJMenuBar(mb);
+        menu1 = new JMenu("REGRESAR");
+        mb.add(menu1);
+        m1 = new JMenuItem("Login");
+        menu1.add(m1);
+        m1.addActionListener(this);
+
         conectar();
         setTitle("BODEGA");
         setSize(720, 480);
@@ -241,9 +254,8 @@ public class Bodeguero extends JFrame {
 
         }
     }
-
-
     public void eliminar() {
+
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
@@ -307,6 +319,17 @@ public class Bodeguero extends JFrame {
     public static void main(String[] args) {
 
         Bodeguero bodeguero = new Bodeguero();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==m1){
+            login log = new login();
+            log.setVisible(true);
+            dispose();
+
+        }
     }
 }
 
