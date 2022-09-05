@@ -18,7 +18,7 @@
         <properties>
           <background color="-3574607"/>
           <font name="Consolas" size="20" style="1"/>
-          <foreground color="-3574607"/>
+          <foreground color="-16777216"/>
           <text value="ID"/>
         </properties>
       </component>
@@ -28,7 +28,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="20" style="1"/>
-          <foreground color="-3574607"/>
+          <foreground color="-16777216"/>
           <labelFor value="e9916"/>
           <text value="EMAIL"/>
         </properties>
@@ -39,7 +39,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="20" style="1"/>
-          <foreground color="-3574607"/>
+          <foreground color="-16777216"/>
           <labelFor value="59698"/>
           <text value="PASSWORD"/>
         </properties>
@@ -50,7 +50,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="20" style="1"/>
-          <foreground color="-3574607"/>
+          <foreground color="-16777216"/>
           <text value="ROL"/>
         </properties>
       </component>
@@ -80,7 +80,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="24" style="1"/>
-          <foreground color="-4519300"/>
+          <foreground color="-12690501"/>
           <text value="ADMINISTRADOR"/>
         </properties>
       </component>
@@ -118,6 +118,9 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-7495411"/>
+          <font size="18" style="1"/>
+          <foreground color="-1"/>
           <text value="AGREGAR"/>
         </properties>
       </component>
@@ -126,6 +129,9 @@
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-7495411"/>
+          <font size="18" style="1"/>
+          <foreground color="-1"/>
           <text value="ELIMINAR"/>
         </properties>
       </component>
@@ -134,6 +140,9 @@
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-7495411"/>
+          <font size="18" style="1"/>
+          <foreground color="-1"/>
           <text value="EDITAR"/>
         </properties>
       </component>
@@ -147,6 +156,10 @@
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-7495411"/>
+          <enabled value="true"/>
+          <font size="18" style="1"/>
+          <foreground color="-1"/>
           <text value="BUSCAR"/>
         </properties>
       </component>
