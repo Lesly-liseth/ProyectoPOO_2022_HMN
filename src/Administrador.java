@@ -46,7 +46,9 @@ public class Administrador extends JFrame {
         usuariosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                admi Admi = new admi();
+                Admi.setVisible(true);
+                dispose();
             }
         });
     }

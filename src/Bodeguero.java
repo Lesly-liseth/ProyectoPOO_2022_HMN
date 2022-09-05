@@ -37,7 +37,7 @@ public class Bodeguero extends JFrame implements ActionListener{
 
         conectar();
         setTitle("BODEGA");
-        setSize(720, 480);
+        setSize(720, 700);
         setContentPane(mainPanel);
         setLocationRelativeTo(null); // aparece la ventana en el centro
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -98,9 +98,9 @@ public class Bodeguero extends JFrame implements ActionListener{
 
     public void conectar() {
 
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
         try {
 
@@ -129,9 +129,9 @@ public class Bodeguero extends JFrame implements ActionListener{
         System.out.println(cantidad);
         System.out.println(stock);
 
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
 
         try {
@@ -169,9 +169,9 @@ public class Bodeguero extends JFrame implements ActionListener{
         String id = "0";
         id = textid.getText();
 
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
 
         try {
@@ -231,11 +231,6 @@ public class Bodeguero extends JFrame implements ActionListener{
         final String PASSWORD = "1234";
 
 
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
-
-
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -261,9 +256,9 @@ public class Bodeguero extends JFrame implements ActionListener{
     }
     public void eliminar() {
 
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
         String borrarid = textid.getText();
 
         try {
@@ -292,18 +287,11 @@ public class Bodeguero extends JFrame implements ActionListener{
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
 
-        model.addColumn("id");
-        model.addColumn("nombre");
-        model.addColumn("descripcion");
-        model.addColumn("precio");
-        model.addColumn("cantidad");
-        model.addColumn("stock");
+        String[] titulo = new String[]{"ID", "PRODUCTO", "DESCRIPCION", "PRECIO", "CANTIDAD", "SUBTOTAL"};
+        model.setColumnIdentifiers(titulo);
+        table1.setModel(model);
         table1.setModel(model);
         String[] dato = new String[6];
-
-        final String DB_URL = "jdbc:mysql://localhost/producto?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
 
 
         try {
