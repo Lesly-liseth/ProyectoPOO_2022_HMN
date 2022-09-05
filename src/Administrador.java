@@ -50,8 +50,6 @@ public class Administrador extends JFrame {
             }
         });
     }
-
-
 }
 
 
