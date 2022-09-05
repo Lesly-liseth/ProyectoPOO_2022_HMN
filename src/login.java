@@ -1,118 +1,117 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+public class login extends JFrame {
 
-public class login extends JDialog{
-    private JTextField emailTF;
-    private JPasswordField passwordTF;
-    private JButton CANCELButton;
-    private JButton OKButton;
-    private JPanel loginPanel;
-    private JButton administradorButton;
-    private JButton cajeroButton;
-    private JButton bodegueroButton;
-    private JFormattedTextField formattedTextField1;
+    private JTextField email;
+    private JPasswordField password;
+    private JButton OK;
+    private JButton cancelar;
+    private JPanel mainPanel;
 
-    public User user;
-    public login(JFrame parent){
-        super(parent);
+    public login() {
+
         setTitle("Login");
-        setContentPane(loginPanel);
-        setMinimumSize(new Dimension(1000,700));
-        setModal(true);
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setDefaultLookAndFeelDecorated(true);
-        //setVisible(true);
+        setSize(720, 480);
+        setContentPane(mainPanel);
+        setLocationRelativeTo(null); // aparece la ventana en el centro
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
 
-        OKButton.addActionListener(new ActionListener() {
+        Connection con;
+        PreparedStatement pst;
+
+        OK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email=emailTF.getText();
-                String password=String.valueOf(passwordTF.getPassword());
-                System.out.println("boton ok");
-                user=getAuthenticationUser(email,password);
+                String correo = email.getText();
+                String pass = String.valueOf(password.getPassword());
 
-                if (user!=null){
-                    dispose();
+                String sql = "SELECT email,password,rol FROM usuarios WHERE email='"+correo+"' ";
+                try {
+                    Connection con = conectar_BDD();
+                    PreparedStatement ps  = con.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery();
+
+                    if(rs.next()) {
+
+                        String em = rs.getString("email");
+                        String p = rs.getString("password");
+                        String r = rs.getString("rol");
+
+                        if (pass.equals(p)) {
+                            if (r.equals("cajero")) {
+
+                                System.out.println("Bienvenido cajero");
+                                cajero1 cajero = new cajero1();
+                                cajero.setVisible(true);
+                                dispose();
+
+                            } else if (r.equals("administrador")) {
+                                System.out.println("Bienvenido administrador");
+                                Administrador administrador = new Administrador();
+                                administrador.setVisible(true);
+                                dispose();
+
+                            } else if(r.equals("bodeguero")){
+                                System.out.println("Bienvenido bodeguero");
+                                Bodeguero bodeguero = new Bodeguero();
+                                bodeguero.setVisible(true);
+                                dispose();
+                            }
+
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTOS");
+
+                        }
+                    }
                 }
-                else{
-                    JOptionPane.showMessageDialog(
-                            login.this,"email o password incorrectos",
-                            "intente nuevamente",
-                            JOptionPane.ERROR_MESSAGE
-                    );
+                catch (SQLException ex){
+                    ex.printStackTrace();
+                    System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS");
                 }
+
+
 
             }
         });
-
-
-        CANCELButton.addActionListener(new ActionListener() {
+        cancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("boton cancel");
                 dispose();
             }
         });
-        setVisible(true);
     }
 
+    public static Connection conectar_BDD() {
 
-    private User getAuthenticationUser(String email, String password){
-        User user =null;
+        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME = "pame";
+        final String PASSWORD = "1234";
 
-        final String DB_URL="jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME="pame";
-        final String PASSWORD="1234";
+        try {
+
+            Connection con = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = con.createStatement();
+            System.out.println("conexion exitosa");
+
+            return con;
 
 
-        try{
-            Connection conn= DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-            Statement stmt= conn.createStatement();
-            String sql="SELECT * FROM usuario WHERE EMAIL=? AND CONTRASEÑA=?";
-            PreparedStatement preparedStatement=conn.prepareStatement(sql);
-            preparedStatement.setString(1,email);
-            preparedStatement.setString(2,password);
-            System.out.println("conexion ok");
-            ResultSet resultSet=preparedStatement.executeQuery();
+        } catch (SQLException ex) {
 
-            if(resultSet.next()){
-                user=new User();
-                user.NOMBRE=resultSet.getString("NOMBRE");
-                user.EMAIL=resultSet.getString("EMAIL");
-                user.CELULAR=resultSet.getString("CELULAR");
-                user.DIRECCION=resultSet.getString("DIRECCION");
-                user.CONTRASEÑA=resultSet.getString("CONTRASEÑA");
-            }
-
-            stmt.close();
-            conn.close();
-
-        }catch(Exception e){
-            System.out.println("error de...");
-            e.printStackTrace();
+            ex.printStackTrace();
+            System.out.println("ERROR DE CONEXIÓN A LA BASE DE DATOS");
+            return null;
         }
 
-        return user;
+
     }
-    
+
     public static void main(String[] args) {
-        login login=new login(null);
-        User user =login.user;
-
-        if(user!=null){
-            System.out.println("Autenticacion correcta:"+user.NOMBRE);
-            System.out.println("email: "+user.EMAIL);
-            //System.out.println("celular: "+user.celular);
-            System.out.println("direccion: "+user.DIRECCION);
-            System.out.println("clave: "+user.CONTRASEÑA);
-        }
-        else{
-            System.out.println("Autenticacion fallida");
-        }
+        login Login = new login();
     }
 }

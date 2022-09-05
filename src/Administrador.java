@@ -12,29 +12,35 @@ public class Administrador extends JFrame {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Administrador");
-        Administrador admi = new Administrador();
+        Administrador administrador = new Administrador();
     }
 
     public Administrador() {
-        setTitle("Bienvenido al sistema de Administrador");
+        setTitle("SISTEMA ADMINISTRADOR");
         setContentPane(mainPanel);
-        setMinimumSize(new Dimension(1280, 720));
+        setMinimumSize(new Dimension(720, 480));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
-        conectar1();
+        setVisible(true);
+
         bodegueroButton.addActionListener(new ActionListener() {
             @Override
 
-
-            public void actionPerformed(ActionEvent e) { }
+            public void actionPerformed(ActionEvent e) {
+                Bodeguero bodeguero = new Bodeguero();
+                bodeguero.setVisible(true);
+                dispose();
+            }
 
         });
 
         cajeroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                cajero1 cajero = new cajero1();
+                cajero.setVisible(true);
+                dispose();
             }
         });
         usuariosButton.addActionListener(new ActionListener() {
@@ -44,31 +50,8 @@ public class Administrador extends JFrame {
             }
         });
     }
-
-    Connection con;
-    PreparedStatement pst;
-
-    public void conectar1() {
-
-        final String DB_URL = "jdbc:mysql://%@/farmacia?serverTimezone=UTC";
-        final String USERNAME = "cualquiera";
-        final String PASSWORD = "";
-
-        try {
-
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            Statement stmt = conn.createStatement();
-            System.out.println("La conexion ha sido exitosa");
-
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("SQL incorrecto");
-        }
-
-    }
-
 }
+
 
 
 
