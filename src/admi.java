@@ -12,14 +12,11 @@ public class admi extends JFrame implements ActionListener {
     private JTextField IDTF;
     private JTextField emailTF;
     private JButton editarbtn;
-    private JButton buscarButton;
     private JButton eliminarButton;
     private JPanel mainPanel;
-    private JTable table1;
     private JButton agregarButton;
     private JTextField passTF;
     private JTextField rolTF;
-    private JButton VERButton;
     DefaultTableModel model = new DefaultTableModel();
 
     public admi() {
@@ -44,12 +41,6 @@ public class admi extends JFrame implements ActionListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        buscarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buscar();
-            }
-        });
         eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,53 +122,6 @@ public class admi extends JFrame implements ActionListener {
 
         }
     }
-
-    public void buscar() {
-        String id = "0";
-        id = IDTF.getText();
-
-        final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
-        final String USERNAME = "pame";
-        final String PASSWORD = "1234";
-
-
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            Statement stmt = conn.createStatement();
-            String sql = "select * from registro_prod where id=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, id);
-            //System.out.println(sql);
-
-
-            ResultSet rs = pst.executeQuery();
-
-
-            if (rs.next() == true) {
-                String email, password, rol;
-                email = rs.getString(2);
-                password = rs.getString(3);
-                rol = rs.getString(4);
-
-                System.out.println();
-                emailTF.setText(email);
-                passTF.setText(password);
-                rolTF.setText(rol);
-
-            } else {
-                //textMensaje.setText("no se encuentra el producto");
-                JOptionPane.showMessageDialog(null, "No se encuentra el producto");
-                eliminar();
-            }
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("SQL incorrecto");
-
-        }
-    }
     public void actualizar() {
         String id, email, password, rol;
         id = IDTF.getText();
@@ -200,7 +144,7 @@ public class admi extends JFrame implements ActionListener {
             pst.setString(2, password);
             pst.setString(3, rol);
             pst.setString(4, id);
-            //ResultSet rs=pst.executeQuery();
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro actualizado");
             stmt.close();
