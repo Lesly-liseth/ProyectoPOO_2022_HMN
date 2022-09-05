@@ -18,10 +18,11 @@ public class Administrador extends JFrame {
     public Administrador() {
         setTitle("SISTEMA ADMINISTRADOR");
         setContentPane(mainPanel);
-        setMinimumSize(new Dimension(1280, 720));
+        setMinimumSize(new Dimension(720, 480));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
+        setVisible(true);
 
         bodegueroButton.addActionListener(new ActionListener() {
             @Override
@@ -50,7 +51,9 @@ public class Administrador extends JFrame {
         });
     }
 
+
 }
+
 
 
 
