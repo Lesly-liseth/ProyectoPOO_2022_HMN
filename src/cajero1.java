@@ -143,7 +143,6 @@ public class cajero1 extends JFrame implements ActionListener{
 
         try {
 
-
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
             ResultSet rs = null;
@@ -153,22 +152,23 @@ public class cajero1 extends JFrame implements ActionListener{
             rs = pst.executeQuery(sql);
 
 
-            ResultSetMetaData datos = rs.getMetaData();
-            int colum = datos.getColumnCount();
+                ResultSetMetaData datos = rs.getMetaData();
+                int colum = datos.getColumnCount();
 
-            while (rs.next()) {
 
-                Object[] filas = new Object[colum];
-                for (int i = 0; i < colum; i++) {
-                    filas[i] = rs.getObject(i+1);
+                while (rs.next()) {
 
+                    Object[] filas = new Object[colum];
+                    for (int i = 0; i < colum; i++) {
+                        filas[i] = rs.getObject(i + 1);
+
+                    }
+                        model.addRow(filas);
                 }
-                model.addRow(filas);
 
-            }
+                stmt.close();
+                conn.close();
 
-            stmt.close();
-            conn.close();
 
         }
         catch (SQLException ex){
@@ -200,11 +200,13 @@ public class cajero1 extends JFrame implements ActionListener{
             String sql = "UPDATE registro_prod SET cantidad =?"+buscar ;
             pst = conn.prepareStatement(sql);
 
-            pst.setString(1,cant);
+                pst.setString(1, cant);
 
-            pst.executeUpdate();
-            stmt.close();
-            conn.close();
+                pst.executeUpdate();
+                stmt.close();
+                conn.close();
+
+
         }
         catch (SQLException ex){
 

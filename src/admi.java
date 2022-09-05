@@ -7,7 +7,7 @@ import java.awt.event.ComponentAdapter;import java.sql.*;
 public class admi extends JFrame implements ActionListener {
     private JMenuBar mb;
     private JMenu menu1;
-    private JMenuItem m1;
+    private JMenuItem m1,m2;
     private JTextField IDTF;
     private JTextField nombreTF;
     private JTextField descripciontextf;
@@ -22,6 +22,7 @@ public class admi extends JFrame implements ActionListener {
     private JButton AÑADIRButton;
     private JButton VERButton;
     DefaultTableModel model = new DefaultTableModel();
+
     public admi() {
 
         setLayout(null);
@@ -31,7 +32,10 @@ public class admi extends JFrame implements ActionListener {
         mb.add(menu1);
         m1 = new JMenuItem("Login");
         menu1.add(m1);
+        m2 = new JMenuItem("Panel Administrador");
+        menu1.add(m2);
         m1.addActionListener(this);
+        m2.addActionListener(this);
 
         conectar();
         setTitle("ADMINISTRACION");
@@ -43,25 +47,35 @@ public class admi extends JFrame implements ActionListener {
 
         BUSCARButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {buscar();}
+            public void actionPerformed(ActionEvent e) {
+                buscar();
+            }
         });
         ELIMINARButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {eliminar();}
+            public void actionPerformed(ActionEvent e) {
+                eliminar();
+            }
         });
         actualizarbtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {actualizar();}
+            public void actionPerformed(ActionEvent e) {
+                actualizar();
+            }
         });
         AÑADIRButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {añadir();}
+            public void actionPerformed(ActionEvent e) {
+                añadir();
+            }
         });
 
 
         LIMPIARButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {limpiar(); }
+            public void actionPerformed(ActionEvent e) {
+                limpiar();
+            }
         });
 
         VERButton.addActionListener(new ActionListener() {
@@ -71,7 +85,9 @@ public class admi extends JFrame implements ActionListener {
             }
         });
 
-    table1.addComponentListener(new ComponentAdapter() { } );}
+        table1.addComponentListener(new ComponentAdapter() {
+        });
+    }
 
     Connection con;
     PreparedStatement pst;
@@ -203,7 +219,6 @@ public class admi extends JFrame implements ActionListener {
         cantidad = CantidadTF.getText();
 
 
-
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
         final String USERNAME = "pame";
         final String PASSWORD = "1234";
@@ -231,6 +246,7 @@ public class admi extends JFrame implements ActionListener {
 
         }
     }
+
     public void eliminar() {
 
         final String DB_URL = "jdbc:mysql://localhost/productos?serverTimezone=UTC";
@@ -299,13 +315,22 @@ public class admi extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==m1){
+        if (e.getSource() == m1) {
             login log = new login();
             log.setVisible(true);
             dispose();
 
         }
+        if (e.getSource() == m2) {
+            Administrador admi = new Administrador();
+            admi.setVisible(true);
+            dispose();
+
+        }
     }
+
+
 }
+
 
 
