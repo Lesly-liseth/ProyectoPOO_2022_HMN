@@ -64,7 +64,7 @@ donde se hara la creacion de una tabla con filas y columnas para que registre ca
 ![image](https://user-images.githubusercontent.com/85316345/188524985-4e054c19-7a0a-4f43-90c6-e84a09487158.png)
 25. Creacion del form de admi, el mismo que consta de tres botones. 
 ![image](https://user-images.githubusercontent.com/85316345/188525344-855ed9b4-89bb-4dd8-a9cc-c9caffd0fcd0.png)
-26, Por una buena practica de programaion se colocalosnombres en los textfile para no perderse.
+26. Por una buena practica de programaion se colocalosnombres en los textfile para no perderse.
 ![image](https://user-images.githubusercontent.com/85316345/188525382-5544552b-b17e-4a02-af0f-04a0578b0c87.png)
 27. Actomaticamente se colocara los diferentes apartados como son los botones y los JLabel y JTextFile,
 se hara la extension JFrame implementando los ActionListener
