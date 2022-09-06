@@ -60,8 +60,37 @@ donde se hara la creacion de una tabla con filas y columnas para que registre ca
 ![image](https://user-images.githubusercontent.com/85316345/188524909-2978ebb7-0324-45ef-9b7a-dec7a2975f04.png)
 23. Se crea una nueva clase main de bodeguero
 ![image](https://user-images.githubusercontent.com/85316345/188524959-bdf514d4-814c-4a51-9258-7a0cbaa59255.png)
-24. Y un Override parala opcion de ir a login
+24. Y un Override para la opcion de ir a login.
 ![image](https://user-images.githubusercontent.com/85316345/188524985-4e054c19-7a0a-4f43-90c6-e84a09487158.png)
+25. Creacion del form de admi, el mismo que consta de tres botones. 
+![image](https://user-images.githubusercontent.com/85316345/188525344-855ed9b4-89bb-4dd8-a9cc-c9caffd0fcd0.png)
+26, Por una buena practica de programaion se colocalosnombres en los textfile para no perderse.
+![image](https://user-images.githubusercontent.com/85316345/188525382-5544552b-b17e-4a02-af0f-04a0578b0c87.png)
+27. Actomaticamente se colocara los diferentes apartados como son los botones y los JLabel y JTextFile,
+se hara la extension JFrame implementando los ActionListener
+![image](https://user-images.githubusercontent.com/85316345/188525451-5067488f-3919-43e6-882d-d03ff9581384.png)
+28. Se hara uso del JMenuBar para ir a la pantalla principal, se coloca las medidas de la pantalla con su respectivo titulo
+![image](https://user-images.githubusercontent.com/85316345/188525580-6ad6c7f6-da99-4d94-8dcd-a8e5a48a2816.png)
+29. Se da funcionalidad a los tres botones que son eliminar, editar y agregra
+![image](https://user-images.githubusercontent.com/85316345/188525648-eaed9641-349c-4572-8fe3-a3f582e02d2f.png)
+30. Se establece una conexion y un statement, con el respectivo IRL de la base de datos, haciendo el uso de un try 
+con un mensaje de "conexion exitosa" y el uso de un catch "SQL incorrecto"
+![image](https://user-images.githubusercontent.com/85316345/188525730-aac8a1bc-18ed-4553-9b54-664a2c881fb3.png)
+31. Creamos una clase publica denomida añadir con su respectivo string email,password, rol. Con el respectivo URL de la base de 
+datos, con un try donde se hara la conexion y el statement con los tres parametros, donde indicara un mensaje "Ingreso de Registro Realizado"
+y un catch "SQL incorrecto"
+![image](https://user-images.githubusercontent.com/85316345/188525768-90363747-18e7-464f-9cd7-776b58fbcfac.png)
+32. Creamos una clase publica denomida actualizar con su respectivo string email,password, rol. Con el respectivo URL de la base de 
+datos, con un try donde se hara la conexion y el statement con los tres parametros, donde indicara un mensaje "Registro actualizado"
+y un catch "SQL incorrecto"
+![image](https://user-images.githubusercontent.com/85316345/188525940-803bff8b-257b-416c-8e77-7082e4bc334d.png)
+33. Con el respectivo URL de la base de datos, utilizando un try donde se hara la accion de borrar por medio del id, tambien lanzara
+un mensaje "Registro borrado" y un catch "SQL incorrecto"
+![image](https://user-images.githubusercontent.com/85316345/188526031-259df24c-142d-423e-9e9a-d2ae6b702eae.png)
+34. Se crea una clase main
+![image](https://user-images.githubusercontent.com/85316345/188526117-ac5a4ab3-bf3e-45f6-a8e7-309266b31ab8.png)
+35. Y un Override parala opcion de ir a login y administrador 
+![image](https://user-images.githubusercontent.com/85316345/188526136-41f28d94-689b-4e29-b996-c60c5fe24c1d.png)
 
 
 
