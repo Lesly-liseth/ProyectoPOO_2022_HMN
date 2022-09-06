@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ProyectoPOO_2022_HMN_jar</output-path>
     <root id="archive" name="ProyectoPOO_2022_HMN.jar">
       <element id="module-output" name="ProyectoPOO_2022_HMN" />
-      <element id="extracted-dir" path="$USER_HOME$/OneDrive - Escuela Politécnica Nacional/Documentos/JAVA/login/mysql-connector-java-8.0.30.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../ProyectoPOO_2022_HMN-main/prueba/itext5-itextpdf-5.5.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive - Escuela Politécnica Nacional/Documentos/JAVA/login/mysql-connector-java-8.0.30.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
