@@ -16,12 +16,12 @@ Nombramos al main con el respectivo titulo.
 Se designa las medidas de la pantalla con el titulo con la conexion.
 ![image](https://user-images.githubusercontent.com/85316345/187301208-ed3bff67-98a7-4eff-9a36-0be900f88c31.png)
 Damos la funcionalidad a los botones de Bodeguero, Cajero y Usuario
-
+![image](https://user-images.githubusercontent.com/85316345/188523482-34ddc55b-45a1-41db-92aa-7941dd9bc2c6.png)
 
 2. Creacion del form de Bodeguero
 Designamos los nombres para evitar confusion
 ![image](https://user-images.githubusercontent.com/85316345/187305612-3ec91f86-98e0-428a-9136-b08b867ff385.png)
-El form de Bodeguero hecha.
+El form de Bodeguero hecho.
 ![image](https://user-images.githubusercontent.com/85316345/187305666-515e1dcb-6537-42b9-a569-5f1c5aa44bc3.png)
 Las librerias importadas que van a ser usadasen el bodeguero.java
 ![image](https://user-images.githubusercontent.com/85316345/187305742-d349f67f-bf93-43a2-bc55-cebad6f39160.png)
