@@ -5,7 +5,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
@@ -33,6 +32,7 @@ public class cajero1 extends JFrame implements ActionListener{
     private JTextField resultado;
     private JButton LIMPIARButton;
     private JButton generar;
+    private JButton VERPRODUCTOSButton;
 
 
     DefaultTableModel model = new DefaultTableModel();
@@ -99,6 +99,12 @@ public class cajero1 extends JFrame implements ActionListener{
             public void actionPerformed(ActionEvent e) {
                 limpiar_tabla();
                 resultado.setText("");
+            }
+        });
+        VERPRODUCTOSButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                visualizar();
             }
         });
     }
@@ -215,7 +221,47 @@ public class cajero1 extends JFrame implements ActionListener{
 
         }
     }
+    public void visualizar(){
 
+        final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";
+        final String USERNAME="pame";
+        final String PASSWORD="1234";
+
+        try {
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = null;
+
+            String sql = "SELECT id,nombre,descripcion,precio,cantidad, precio*cantidad FROM registro_prod ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+
+            ResultSetMetaData datos = rs.getMetaData();
+            int colum = datos.getColumnCount();
+
+            while (rs.next()) {
+
+                Object[] filas = new Object[colum];
+                for (int i = 0; i < colum; i++) {
+                    filas[i] = rs.getObject(i + 1);
+
+                }
+                model.addRow(filas);
+            }
+
+            stmt.close();
+            conn.close();
+
+
+        }
+        catch (SQLException ex){
+
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error de conección");
+
+        }
+    }
     public void stock(){
 
         final String DB_URL="jdbc:mysql://localhost/productos?serverTimezone=UTC";

@@ -104,7 +104,7 @@ public class admi extends JFrame implements ActionListener {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "insert into registro_prod(email, password, rol)values(?,?,?)";
+            String sql = "insert into usuarios(email, password, rol)values(?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, email);
             pst.setString(2, password);
@@ -115,6 +115,10 @@ public class admi extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Ingreso de Registro Realizado");
             stmt.close();
             conn.close();
+
+            emailTF.setText("");
+            passTF.setText("");
+            rolTF.setText("");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -138,7 +142,7 @@ public class admi extends JFrame implements ActionListener {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "update registro_prod set email=?,password=?,rol=? where id=?";
+            String sql = "update usuarios set email=?,password=?,rol=? where id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, email);
             pst.setString(2, password);
@@ -167,7 +171,7 @@ public class admi extends JFrame implements ActionListener {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "delete from registro_prod where id=?";
+            String sql = "delete from usuarios where id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, borrarid);
 
