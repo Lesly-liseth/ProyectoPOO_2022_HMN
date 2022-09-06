@@ -136,8 +136,9 @@ if donde buscara el producto por medio del nombre, donde un try "GRACIAS POR SU 
 ![image](https://user-images.githubusercontent.com/85316345/188528520-b27bde1d-37b7-4a35-a5df-6256aff8e1bd.png)
 54. Asignamos nombres a las variables para no perdermos.
 ![image](https://user-images.githubusercontent.com/85316345/188528661-5ce63df3-42ef-419a-93d1-5a68308186fa.png)
-55. 
+55. Se asignan los valores automaticamente
 ![image](https://user-images.githubusercontent.com/85316345/188528917-564ffd1c-4e56-4019-b34c-5d50fd3ffa5f.png)
+56. 
 
 
 
