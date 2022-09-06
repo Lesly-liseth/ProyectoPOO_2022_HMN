@@ -136,8 +136,17 @@ if donde buscara el producto por medio del nombre, donde un try "GRACIAS POR SU 
 ![image](https://user-images.githubusercontent.com/85316345/188528520-b27bde1d-37b7-4a35-a5df-6256aff8e1bd.png)
 54. Asignamos nombres a las variables para no perdermos.
 ![image](https://user-images.githubusercontent.com/85316345/188528661-5ce63df3-42ef-419a-93d1-5a68308186fa.png)
-55. n
+55. Se asignan los valores automaticamente
 ![image](https://user-images.githubusercontent.com/85316345/188528917-564ffd1c-4e56-4019-b34c-5d50fd3ffa5f.png)
+56. Se crea el titulo y las dimensiones de la pantalla
+![image](https://user-images.githubusercontent.com/85316345/188531357-18e5a3d1-e870-471e-81d5-bb6545fbe30a.png)
+57. Se da funcionalidad de Ok
+![image](https://user-images.githubusercontent.com/85316345/188531396-19b3bb98-237e-47b9-899e-9f726c8784e8.png)
+58. Se da funcionalidad de cancelar
+![image](https://user-images.githubusercontent.com/85316345/188531423-821b97a7-6256-40a6-9bdb-440ff09fc5e3.png)
+59. Se asigan una clase publica conectar, donde se usael URL para conectar a la base de datos con un try un mnesaje de exito y un catch un mensaje de erro.
+![image](https://user-images.githubusercontent.com/85316345/188531479-7cb242b8-e2db-41b2-bc81-e1c9420f1f5c.png)
+
 
 
 
