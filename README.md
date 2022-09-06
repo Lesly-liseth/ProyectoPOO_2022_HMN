@@ -91,6 +91,57 @@ un mensaje "Registro borrado" y un catch "SQL incorrecto"
 ![image](https://user-images.githubusercontent.com/85316345/188526117-ac5a4ab3-bf3e-45f6-a8e7-309266b31ab8.png)
 35. Y un Override parala opcion de ir a login y administrador 
 ![image](https://user-images.githubusercontent.com/85316345/188526136-41f28d94-689b-4e29-b996-c60c5fe24c1d.png)
+36. Creacion del form de sistema de facturacion , el mismo que consta de cinco botones.
+![image](https://user-images.githubusercontent.com/85316345/188526472-f78a99ad-c74f-41e3-91f1-c53901cccbae.png)
+37. Asignamos nombres propios para evitar confusion
+![image](https://user-images.githubusercontent.com/85316345/188526755-6577beed-6de8-4280-8462-57f9d5555df8.png)
+38. Se hace uso de librerias externas
+![image](https://user-images.githubusercontent.com/85316345/188527044-e5d62885-33bb-4663-b55e-032e2d42a2e0.png)
+39. Actomaticamente se colocara los diferentes apartados como son los botones y los JLabel y JTextFile,
+se hara la extension JFrame implementando los ActionListener
+![image](https://user-images.githubusercontent.com/85316345/188527077-a42ac3d2-703c-478d-87f9-26dcde519d8c.png)
+40. Por default desiganmos un modelo de tabla
+![image](https://user-images.githubusercontent.com/85316345/188527128-2d8d68af-2329-4a52-82f2-e4f2cf55d847.png)
+41. Creamos una clase publica denomida cajero1 donde se hara uso de JMenuBar que nos indicara la pagina principal y el login, 
+se disgna un titulo y las medidas de la pantalla 
+![image](https://user-images.githubusercontent.com/85316345/188527161-db8ddd59-61c9-43ba-84d6-29bcef40bde4.png)
+42. Se creara la funcionalidad de los botones
+![image](https://user-images.githubusercontent.com/85316345/188527365-95eab255-0253-42bb-8e55-cbe394355cf5.png)
+43. Creamos una clase publica denomida conectar donde por medio del URL se conectara a la base de datos, utilizando 
+un try de "conexion exitosa" y un catch de "SQL incorrecto"
+![image](https://user-images.githubusercontent.com/85316345/188527444-293893b7-af36-464d-9c4a-4470878509fb.png)
+44. Creamos una clase publica denomida agregada donde por medio del URL se conectara a la base de datos, donde se hara el uso de un 
+if donde buscara el producto por medio del nombre, creamos un try donde se realiza la conexion y el statement y un while
+para la creacion de la tabla de filas y columnas
+![image](https://user-images.githubusercontent.com/85316345/188527555-92b93687-039d-44bd-94b9-5db2cb56a861.png)
+45. Se cierra el statement y la conexion con un catch de "Error de conección" 
+![image](https://user-images.githubusercontent.com/85316345/188527731-9c0c475e-d676-4912-b988-553fba14746e.png)
+46. Creamos una clase publica denomida actualizar donde por medio del URL se conectara a la base de datos donde se hara el uso de un 
+if donde buscara el producto por medio del nombre, donde un try con un update del registro y un catch "Ingrese la cantidad del producto"
+![image](https://user-images.githubusercontent.com/85316345/188527822-d8ac74b1-12b6-4976-9020-690bade537de.png)
+47. Creamos una clase publica denomida stock donde por medio del URL se conectara a la base de datos donde se hara el uso de un 
+if donde buscara el producto por medio del nombre, donde un try "GRACIAS POR SU COMPRA" y un stock con "stock" 
+![image](https://user-images.githubusercontent.com/85316345/188527994-dc4abc53-a99b-48b1-819c-e9a5010fbda6.png)
+48. Creamos una clase publica denomida total 
+![image](https://user-images.githubusercontent.com/85316345/188528108-2ba169c5-94b4-42a4-8d5a-f15b542c228c.png)
+49. Creamos una clase publica denomida eliminar_registo
+![image](https://user-images.githubusercontent.com/85316345/188528160-bc28b58c-6f03-41b5-b2dd-45ff8d263026.png)
+50. Creamos una clase publica denomida generar_nota
+![image](https://user-images.githubusercontent.com/85316345/188528241-1cdeeb26-f9ce-45ed-b1a2-974643963a81.png)
+51. Creamos una clase publica denomida limpiar_tabla
+![image](https://user-images.githubusercontent.com/85316345/188528288-4ff75b70-b85a-4f99-bd49-d4fef18fc71e.png)
+52. Creamos la clase main y el Override
+![image](https://user-images.githubusercontent.com/85316345/188528367-4aac2fcd-a1d2-46e8-b62d-7ad3c63629a1.png)
+
+
+
+
+
+
+
+  
+
+
 
 
 
