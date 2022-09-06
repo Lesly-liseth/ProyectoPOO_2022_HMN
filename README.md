@@ -132,6 +132,16 @@ if donde buscara el producto por medio del nombre, donde un try "GRACIAS POR SU 
 ![image](https://user-images.githubusercontent.com/85316345/188528288-4ff75b70-b85a-4f99-bd49-d4fef18fc71e.png)
 52. Creamos la clase main y el Override
 ![image](https://user-images.githubusercontent.com/85316345/188528367-4aac2fcd-a1d2-46e8-b62d-7ad3c63629a1.png)
+53. Creacion del form de login, el mismo que consta de dos botones y con sus respectivas imagenes.
+![image](https://user-images.githubusercontent.com/85316345/188528520-b27bde1d-37b7-4a35-a5df-6256aff8e1bd.png)
+54. Asignamos nombres a las variables para no perdermos.
+![image](https://user-images.githubusercontent.com/85316345/188528661-5ce63df3-42ef-419a-93d1-5a68308186fa.png)
+55. n
+![image](https://user-images.githubusercontent.com/85316345/188528917-564ffd1c-4e56-4019-b34c-5d50fd3ffa5f.png)
+
+
+
+
 
 
 
